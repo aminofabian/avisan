@@ -88,19 +88,16 @@
     --sidebar-border: oklch(0.922 0 0);
     --sidebar-ring: oklch(0.708 0 0);
 
-    /* Coming-soon page visual tokens (brand: #1477b3, #144c91) */
-    --cs-black: #0a0a0a;
+    --cs-black: #0c1a2a;
     --cs-accent: #1477b3;
     --cs-brand-deep: #144c91;
-    --cs-muted: #5c6b78;
+    --cs-muted: #6b7f8e;
     --cs-surface: #f7fbfd;
-    --cs-outer: #0a1628;
-    --cs-input-border: #c5d8e8;
-    --cs-shadow: 0 12px 32px rgb(20 76 145 / 12%);
-
-    /* Coming-soon page typography scale */
-    --cs-text-display: clamp(2.3rem, 4.6vw, 4rem);
-    --cs-text-title: clamp(1.5rem, 2.5vw, 2.125rem);
+    --cs-outer: #06101e;
+    --cs-input-border: #bdd4e5;
+    --cs-shadow: 0 24px 80px -12px rgba(20, 76, 145, 0.18);
+    --cs-text-display: clamp(2.4rem, 5vw, 4.2rem);
+    --cs-text-title: clamp(1rem, 1.6vw, 1.15rem);
     --cs-text-body: 1rem;
     --cs-text-caption: 0.875rem;
 }
@@ -140,147 +137,156 @@
 }
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
-    }
-  body {
-    @apply bg-background text-foreground;
-    font-size: var(--cs-text-body);
-    }
-  html {
-    @apply font-sans;
-    }
+  * { @apply border-border outline-ring/50; }
+  body { @apply bg-background text-foreground; font-size: var(--cs-text-body); }
+  html { @apply font-sans; scroll-behavior: smooth; }
 }
 
+/* --- Gradient headline --- */
+.cs-gradient-text {
+  background: linear-gradient(135deg, #1477b3 0%, #144c91 55%, #0f3d6b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* --- Glass card --- */
+.cs-glass {
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(16px) saturate(1.6);
+  -webkit-backdrop-filter: blur(16px) saturate(1.6);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  box-shadow:
+    0 14px 44px -8px rgba(20, 76, 145, 0.13),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+/* --- Animated mesh BG on outer --- */
+@keyframes cs-mesh {
+  0%,100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.cs-mesh-bg {
+  background: linear-gradient(-45deg, #06101e, #0c1f3a, #0a2848, #071626);
+  background-size: 400% 400%;
+  animation: cs-mesh 16s ease infinite;
+}
+
+/* --- Keyframes --- */
 @keyframes cs-fade-up {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes cs-float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-5px);
-  }
+  0%,100% { transform: translateY(0); }
+  50%     { transform: translateY(-7px); }
 }
 
+@keyframes cs-pulse-ring {
+  0%   { transform: scale(1);   opacity: 0.6; }
+  70%  { transform: scale(1.6); opacity: 0; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+@keyframes cs-count-glow {
+  0%,100% { text-shadow: 0 0 20px rgba(20,119,179,0.2); }
+  50%     { text-shadow: 0 0 40px rgba(20,119,179,0.45); }
+}
+
+/* --- Staggered entrance --- */
+.cs-stagger > * {
+  opacity: 0;
+  transform: translateY(18px);
+  animation: cs-fade-up 550ms cubic-bezier(0.16,1,0.3,1) forwards;
+}
+.cs-stagger > *:nth-child(1) { animation-delay: 100ms; }
+.cs-stagger > *:nth-child(2) { animation-delay: 200ms; }
+.cs-stagger > *:nth-child(3) { animation-delay: 300ms; }
+.cs-stagger > *:nth-child(4) { animation-delay: 400ms; }
+.cs-stagger > *:nth-child(5) { animation-delay: 500ms; }
+.cs-stagger > *:nth-child(6) { animation-delay: 580ms; }
+.cs-stagger > *:nth-child(7) { animation-delay: 650ms; }
+
+/* --- Component styles --- */
 @layer components {
   .cs-fade-in {
-    animation: cs-fade-up 500ms ease-out both;
+    animation: cs-fade-up 600ms cubic-bezier(0.16,1,0.3,1) both;
   }
 
   .cs-shop-button {
-    box-shadow: 0 0 0 0 rgb(10 10 10 / 0%);
-    transition:
-      transform 220ms ease,
-      box-shadow 220ms ease,
-      filter 220ms ease;
+    box-shadow: 0 4px 14px rgba(20,119,179,0.35);
+    transition: transform 220ms ease, box-shadow 220ms ease, filter 220ms ease;
   }
-
   .cs-shop-button:hover {
-    box-shadow: 0 8px 22px rgb(20 76 145 / 35%);
-    filter: brightness(1.05);
-    transform: translateY(-1px);
-  }
-
-  .cs-nav-link {
-    transition:
-      opacity 180ms ease,
-      text-decoration-color 180ms ease;
-    text-decoration: underline;
-    text-decoration-color: transparent;
-    text-underline-offset: 4px;
-  }
-
-  .cs-nav-link:hover {
-    text-decoration-color: currentcolor;
-  }
-
-  .cs-email-input {
-    transition: box-shadow 180ms ease;
-  }
-
-  .cs-email-input:focus {
-    box-shadow: inset 0 0 0 1.5px rgb(20 119 179 / 45%);
-  }
-
-  .cs-notify-button {
-    transition:
-      transform 220ms ease,
-      background-color 220ms ease,
-      box-shadow 220ms ease;
-  }
-
-  .cs-notify-button:hover {
-    background-color: var(--cs-brand-deep);
-    box-shadow: 0 8px 18px rgb(20 76 145 / 30%);
-    transform: translateY(-1px);
-  }
-
-  .cs-social-button {
-    transition:
-      transform 200ms ease,
-      background-color 200ms ease,
-      border-color 200ms ease,
-      color 200ms ease;
-  }
-
-  .cs-social-button:hover {
-    transform: translateY(-1px);
-    background-color: var(--cs-accent);
-    border-color: var(--cs-accent);
-    color: #fff;
-  }
-
-  .cs-footer-link {
-    transition: opacity 180ms ease;
-  }
-
-  .cs-footer-link:hover {
-    opacity: 0.72;
-  }
-
-  .cs-float-card {
-    will-change: transform;
-    transition: transform 220ms ease;
-  }
-
-  .cs-float-card:hover {
+    box-shadow: 0 10px 28px rgba(20,76,145,0.45);
+    filter: brightness(1.06);
     transform: translateY(-2px);
   }
 
-  .cs-float-slow {
-    animation: cs-float 4.8s ease-in-out infinite;
+  .cs-nav-link {
+    position: relative;
+    text-decoration: none;
+    transition: color 180ms ease;
+  }
+  .cs-nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0; bottom: -4px;
+    width: 0; height: 2px;
+    border-radius: 1px;
+    background: linear-gradient(90deg, #1477b3, #144c91);
+    transition: width 240ms cubic-bezier(0.16,1,0.3,1);
+  }
+  .cs-nav-link:hover::after { width: 100%; }
+  .cs-nav-link:hover { color: var(--cs-accent); }
+
+  .cs-email-input { transition: box-shadow 180ms ease; }
+  .cs-email-input:focus { box-shadow: inset 0 0 0 1.5px rgba(20,119,179,0.4); }
+
+  .cs-notify-button {
+    transition: transform 220ms ease, box-shadow 220ms ease, filter 220ms ease;
+  }
+  .cs-notify-button:hover {
+    box-shadow: 0 10px 24px rgba(20,76,145,0.35);
+    filter: brightness(1.06);
+    transform: translateY(-2px);
   }
 
-  .cs-float-fast {
-    animation: cs-float 4s ease-in-out infinite;
-    animation-delay: 0.5s;
+  .cs-social-button {
+    transition: transform 200ms ease, background 200ms ease, border-color 200ms ease, color 200ms ease, box-shadow 200ms ease;
   }
+  .cs-social-button:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #1477b3, #144c91);
+    border-color: transparent;
+    color: #fff;
+    box-shadow: 0 6px 16px rgba(20,76,145,0.3);
+  }
+
+  .cs-footer-link { transition: color 180ms ease; }
+  .cs-footer-link:hover { color: var(--cs-accent); }
+
+  .cs-float-card {
+    will-change: transform;
+    transition: transform 280ms cubic-bezier(0.16,1,0.3,1), box-shadow 280ms ease;
+  }
+  .cs-float-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 50px -10px rgba(20,76,145,0.22), inset 0 0 0 1px rgba(255,255,255,0.5);
+  }
+  .cs-float-slow { animation: cs-float 5s ease-in-out infinite; }
+  .cs-float-fast { animation: cs-float 3.8s ease-in-out infinite; animation-delay: 0.6s; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .cs-fade-in,
-  .cs-float-slow,
-  .cs-float-fast {
+  .cs-fade-in, .cs-float-slow, .cs-float-fast, .cs-mesh-bg, .cs-stagger > * {
     animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
-
-  .cs-shop-button,
-  .cs-notify-button,
-  .cs-social-button,
-  .cs-footer-link,
-  .cs-nav-link,
-  .cs-float-card {
+  .cs-shop-button, .cs-notify-button, .cs-social-button, .cs-footer-link, .cs-nav-link, .cs-float-card {
     transition: none !important;
   }
 }

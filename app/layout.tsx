@@ -3,6 +3,7 @@ import { Geist_Mono, Plus_Jakarta_Sans } from "next/font/google"
 
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
+import { getSiteUrl, siteConfig } from "@/lib/site"
 import { cn } from "@/lib/utils"
 
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -16,13 +17,97 @@ const fontMono = Geist_Mono({
   variable: "--font-mono",
 })
 
+const siteUrl = getSiteUrl()
+
 export const metadata: Metadata = {
-  title: "Avisan",
-  description: "Premium UPVC profiles and window solutions.",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: `${siteConfig.name} · ${siteConfig.tagline}`,
+    template: siteConfig.titleTemplate,
+  },
+  description: siteConfig.description,
+  applicationName: siteConfig.name,
+  authors: [{ name: siteConfig.name, url: siteUrl }],
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
+  category: "Business",
+  keywords: [...siteConfig.keywords],
+  referrer: "origin-when-cross-origin",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  alternates: {
+    languages: {
+      "en-IN": "/",
+      en: "/",
+    },
+  },
+  openGraph: {
+    type: "website",
+    locale: siteConfig.locale.replace("_", "-"),
+    url: siteUrl,
+    siteName: siteConfig.name,
+    title: `${siteConfig.name} · ${siteConfig.tagline}`,
+    description: siteConfig.longDescription,
+    images: [
+      {
+        url: "/avisanlogo.png",
+        width: 1536,
+        height: 1024,
+        alt: `${siteConfig.name} — premium UPVC profiles & windows`,
+        type: "image/png",
+      },
+      {
+        url: "/upvc-sliding-windows-03b.jpg",
+        alt: "Avisan UPVC sliding window system",
+        type: "image/jpeg",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${siteConfig.name} · ${siteConfig.tagline}`,
+    description: siteConfig.description,
+    images: ["/upvc-sliding-windows-03b.jpg", "/avisanlogo.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  appleWebApp: {
+    capable: true,
+    title: siteConfig.name,
+    statusBarStyle: "black-translucent",
+  },
+  other: {
+    "msapplication-TileColor": "#1477b3",
+  },
+  ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+    ? {
+        verification: {
+          google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+        },
+      }
+    : {}),
 }
 
 export const viewport: Viewport = {
-  themeColor: "#1477b3",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#1477b3" },
+    { media: "(prefers-color-scheme: dark)", color: "#06101e" },
+  ],
+  colorScheme: "light dark",
+  width: "device-width",
+  initialScale: 1,
 }
 
 export default function RootLayout({
@@ -32,7 +117,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="en-IN"
       suppressHydrationWarning
       className={cn("antialiased", fontMono.variable, "font-sans", plusJakartaSans.variable)}
     >

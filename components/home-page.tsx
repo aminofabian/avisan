@@ -1,4 +1,4 @@
-import { Globe, Leaf, Mail, MapPin, MessageCircle, Phone, Recycle, ShieldCheck } from "lucide-react"
+import { Download, Globe, Leaf, Mail, MapPin, MessageCircle, Phone, Recycle, ShieldCheck } from "lucide-react"
 import Image from "next/image"
 import { Fragment } from "react"
 
@@ -10,6 +10,8 @@ const profileHeroSrc = "/upvc-profile-500x500-removebg-preview.png"
 const heroVillaSrc =
   "/luxury-villa-saint-jean-cap-ferrat-architect-vielliard-francheteau-1-1536x867.avif"
 const windowCutoutSrc = "/upvc-sliding-windows-03b-removebg-preview.png"
+/** Product catalog — `public/UPVC.pdf` */
+const catalogPdfHref = "/UPVC.pdf"
 
 /** Stronger edge feather + lighter shadow so cutouts sit quietly on the façade */
 const floatBlend =
@@ -77,10 +79,20 @@ export function HomePage() {
           <p className="mt-6 max-w-lg text-[15px] font-medium leading-relaxed text-[#263545] sm:text-lg">
             Engineered with German technology — precision profiles for homes that last.
           </p>
-          <div className="mt-8 w-full max-w-xl">
-            <div className="cs-shop-button rounded-2xl bg-gradient-to-r from-[#0a5aa8] to-[#084a8f] px-7 py-3.5 text-center text-sm font-semibold text-white shadow-[0_8px_28px_rgba(10,90,168,0.38)] sm:text-base">
+          <div className="mt-8 flex w-full max-w-xl flex-col items-center gap-3 sm:max-w-2xl">
+            <div className="cs-shop-button w-full rounded-2xl bg-gradient-to-r from-[#0a5aa8] to-[#084a8f] px-7 py-3.5 text-center text-sm font-semibold text-white shadow-[0_8px_28px_rgba(10,90,168,0.38)] sm:text-base">
               Premium Window &amp; Door Profiles
             </div>
+            <a
+              href={catalogPdfHref}
+              download="Avisan-UPVC-catalog.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cs-shop-button inline-flex w-full items-center justify-center gap-2 rounded-2xl border-2 border-[#0a5aa8]/35 bg-white/75 px-6 py-3 text-sm font-semibold text-[#0a5aa8] shadow-[0_6px_24px_rgba(10,90,168,0.12)] backdrop-blur-sm transition-[border-color,background-color,transform] hover:border-[#0a5aa8]/55 hover:bg-white/95 sm:text-base"
+            >
+              <Download className="size-4 shrink-0 opacity-90" aria-hidden />
+              Download catalog (PDF)
+            </a>
           </div>
         </header>
 
@@ -145,13 +157,13 @@ export function HomePage() {
 
           {/* Specs card — bottom-right overlap */}
           <div className="relative z-[3] mx-4 -mt-20 mb-6 flex justify-end sm:mx-7 sm:-mt-24 sm:mb-8">
-            <div className="w-full max-w-[340px] rounded-2xl border border-black/10 bg-white p-5 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.25)] sm:p-6">
-              <p className="text-center text-xs font-bold uppercase tracking-wider text-[#5a6b78]">
-                Available Colors
+            <div className="w-full max-w-[360px] rounded-3xl border border-white/70 bg-white/90 p-6 shadow-[0_28px_70px_-18px_rgba(15,55,95,0.35),inset_0_1px_0_rgba(255,255,255,0.95)] backdrop-blur-xl sm:p-7">
+              <p className="text-center text-[11px] font-bold uppercase tracking-[0.2em] text-[#5a6b78]">
+                Available colors
               </p>
-              <div className="mt-4 flex justify-center gap-8">
-                <div className="text-center">
-                  <div className="relative mx-auto h-16 w-24 overflow-hidden rounded-lg border border-black/15 shadow-inner">
+              <div className="mt-5 flex justify-center gap-10">
+                <div className="text-center transition-transform duration-300 hover:scale-[1.03]">
+                  <div className="relative mx-auto h-[4.5rem] w-[5.75rem] overflow-hidden rounded-xl border border-black/10 shadow-[0_8px_20px_-6px_rgba(0,0,0,0.2)] ring-2 ring-white">
                     <Image
                       src="/Species-Oak_Stain-GoldenOak.jpg"
                       alt="Golden Oak wood grain laminate"
@@ -160,20 +172,23 @@ export function HomePage() {
                       sizes="96px"
                     />
                   </div>
-                  <span className="mt-2 block text-xs font-bold text-[#1a1a1a]">Golden Oak</span>
+                  <span className="mt-2.5 block text-xs font-bold text-[#1a1a1a]">Golden Oak</span>
                 </div>
-                <div className="text-center">
-                  <div className="mx-auto h-16 w-24 rounded-lg border-2 border-[#cfd8e0] bg-white shadow-inner" />
-                  <span className="mt-2 block text-xs font-bold text-[#1a1a1a]">White</span>
+                <div className="text-center transition-transform duration-300 hover:scale-[1.03]">
+                  <div className="mx-auto h-[4.5rem] w-[5.75rem] rounded-xl border-2 border-[#d8e4ed] bg-gradient-to-br from-white to-[#eef5f9] shadow-[inset_0_2px_8px_rgba(255,255,255,0.9)] ring-2 ring-white" />
+                  <span className="mt-2.5 block text-xs font-bold text-[#1a1a1a]">White</span>
                 </div>
               </div>
 
-              <div className="mt-6 flex flex-wrap justify-center gap-2.5">
+              <p className="mb-3 mt-7 text-center text-[10px] font-bold uppercase tracking-[0.18em] text-[#5a6b78]">
+                Standards
+              </p>
+              <div className="flex flex-wrap justify-center gap-2">
                 {certDiscs.map((c) => (
                   <div
                     key={c.label ?? c.icon}
                     title={"title" in c ? c.title : undefined}
-                    className="flex h-11 w-11 items-center justify-center rounded-full bg-[#0a5aa8] text-[9px] font-bold uppercase leading-none text-white shadow-md sm:h-12 sm:w-12 sm:text-[10px]"
+                    className="flex h-11 w-11 cursor-default items-center justify-center rounded-full bg-gradient-to-br from-[#0a5aa8] to-[#073d73] text-[9px] font-bold uppercase leading-none text-white shadow-[0_4px_12px_rgba(10,90,168,0.35)] transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_-4px_rgba(10,90,168,0.45)] sm:h-12 sm:w-12 sm:text-[10px]"
                   >
                     {c.icon === "recycle" ? (
                       <Recycle className="size-5 text-white" strokeWidth={2.2} aria-hidden />
@@ -187,36 +202,59 @@ export function HomePage() {
               </div>
 
               <div className="mt-6 flex flex-col gap-3">
-                <div className="rounded-full bg-[#c41e3a] py-3 text-center text-sm font-semibold text-white shadow-md">
-                  Standard Length: 5.9 m
+                <div className="rounded-2xl bg-gradient-to-r from-[#c41e3a] to-[#a01830] py-3.5 text-center text-sm font-semibold text-white shadow-[0_6px_20px_-4px_rgba(196,30,58,0.45)]">
+                  Standard length: 5.9 m
                 </div>
-                <div className="rounded-full bg-[#0a5aa8] py-3 text-center text-sm font-semibold text-white shadow-md">
-                  Wall Thickness: 2.2 mm
+                <div className="rounded-2xl bg-gradient-to-r from-[#0a5aa8] to-[#073d73] py-3.5 text-center text-sm font-semibold text-white shadow-[0_6px_20px_-4px_rgba(10,90,168,0.4)]">
+                  Wall thickness: 2.2 mm
                 </div>
+                <a
+                  href={catalogPdfHref}
+                  download="Avisan-UPVC-catalog.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-1 flex w-full items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-[#0a5aa8]/35 bg-[#0a5aa8]/[0.06] py-3.5 text-sm font-semibold text-[#073d73] transition-colors hover:border-[#0a5aa8]/55 hover:bg-[#0a5aa8]/10"
+                >
+                  <Download className="size-4 shrink-0" aria-hidden />
+                  Full catalog (PDF)
+                </a>
               </div>
             </div>
           </div>
         </article>
 
-        {/* Coming soon + email — slim strip below poster */}
-        <div className="mx-auto mt-12 max-w-xl text-center">
-          <p className="text-2xl font-black uppercase tracking-[0.12em] text-[#0a3d6b] sm:text-3xl">Coming Soon</p>
-          <p className="mt-3 text-sm text-[#4a5f6e]">
-            Full catalog and dealer tools are on the way. Get notified when we launch.
+        <div className="mx-auto mt-16 max-w-xl text-center">
+          <div className="inline-flex items-center gap-2 rounded-full border border-[#0a5aa8]/20 bg-white/60 px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.2em] text-[#0a5aa8] backdrop-blur-sm">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#0a5aa8] opacity-40 motion-reduce:animate-none" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-[#0a5aa8]" />
+            </span>
+            Launching soon
+          </div>
+          <p className="cs-gradient-text mt-5 text-3xl font-black uppercase tracking-[0.08em] sm:text-4xl">Coming soon</p>
+          <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-[#4a5f6e]">
+            Catalog, specs, and dealer resources are almost here. Leave your email — we&apos;ll only write when it matters.
           </p>
-          <form className="mt-6" noValidate aria-label="Notify me when we launch">
-            <div className="mx-auto flex max-w-md flex-col gap-2 rounded-2xl border border-[#9ebdd4] bg-white/95 p-2 shadow-md sm:h-[52px] sm:flex-row sm:items-center sm:rounded-full">
+          <a
+            href={catalogPdfHref}
+            download="Avisan-UPVC-catalog.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mx-auto mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#0a5aa8] underline decoration-[#0a5aa8]/35 underline-offset-4 transition-colors hover:decoration-[#0a5aa8]"
+          >
+            <Download className="size-4" aria-hidden />
+            Download UPVC catalog (PDF)
+          </a>
+          <form className="mt-8" noValidate aria-label="Notify me when we launch">
+            <div className="mx-auto flex max-w-md flex-col gap-2 rounded-2xl border border-[#bcd4e8] bg-white/90 p-2 shadow-[0_16px_40px_-12px_rgba(10,60,100,0.2)] backdrop-blur-md sm:h-[54px] sm:flex-row sm:items-center sm:rounded-full sm:pl-1 sm:pr-1.5">
               <input
                 type="email"
                 name="email"
                 autoComplete="email"
-                placeholder="Your email"
-                className="h-11 flex-1 rounded-xl border-0 bg-transparent px-4 text-sm outline-none placeholder:text-[#7a8d9a] sm:rounded-full"
+                placeholder="you@company.com"
+                className="cs-email-input h-12 flex-1 rounded-xl border-0 bg-transparent px-5 text-sm outline-none placeholder:text-[#8a9bab] sm:h-11 sm:rounded-full"
               />
-              <button
-                type="submit"
-                className="h-11 shrink-0 rounded-xl bg-[#0a5aa8] px-8 text-sm font-semibold text-white shadow-md sm:rounded-full"
-              >
+              <button type="submit" className="cs-notify-button h-12 shrink-0 rounded-xl bg-gradient-to-r from-[#0a5aa8] to-[#073d73] px-8 text-sm font-semibold text-white sm:h-10 sm:rounded-full">
                 Notify me
               </button>
             </div>
@@ -226,7 +264,7 @@ export function HomePage() {
         {/* Contact card */}
         <section
           id="contact"
-          className="mx-auto mt-14 w-full max-w-3xl rounded-2xl border-2 border-dashed border-black bg-[linear-gradient(165deg,#e5f1fa_0%,#d8eaf7_50%,#e8f4fc_100%)] p-5 shadow-lg sm:p-8"
+          className="mx-auto mt-16 w-full max-w-3xl rounded-3xl border-2 border-dashed border-[#0c1a2a]/25 bg-[linear-gradient(165deg,#eef6fc_0%,#dceef9_45%,#e8f4fc_100%)] p-6 shadow-[0_24px_60px_-20px_rgba(10,55,95,0.2)] sm:p-9"
           aria-label="Contact information"
         >
           <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-[2fr_3fr] md:gap-10">
@@ -253,9 +291,9 @@ export function HomePage() {
                 />
               </div>
             </div>
-            <ul className="space-y-4 text-left">
-              <li className="flex gap-3">
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center bg-black text-white">
+            <ul className="space-y-5 text-left">
+              <li className="flex gap-4">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#0a5aa8] to-[#073d73] text-white shadow-md">
                   <Phone className="size-[18px]" strokeWidth={2.25} aria-hidden />
                 </span>
                 <p className="min-w-0 pt-1.5 text-sm font-medium leading-snug text-[#1a1a1a]">
@@ -269,8 +307,8 @@ export function HomePage() {
                   ))}
                 </p>
               </li>
-              <li className="flex gap-3">
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center bg-black text-white">
+              <li className="flex gap-4">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#0a5aa8] to-[#073d73] text-white shadow-md">
                   <Mail className="size-[18px]" strokeWidth={2.25} aria-hidden />
                 </span>
                 <p className="pt-1.5 text-sm font-medium">
@@ -279,14 +317,14 @@ export function HomePage() {
                   </a>
                 </p>
               </li>
-              <li className="flex gap-3">
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center bg-black text-white">
+              <li className="flex gap-4">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#0a5aa8] to-[#073d73] text-white shadow-md">
                   <MapPin className="size-[18px]" strokeWidth={2.25} aria-hidden />
                 </span>
                 <p className="pt-1.5 text-sm font-medium text-[#1a1a1a]">{siteConfig.contactAddress}</p>
               </li>
-              <li className="flex gap-3">
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center bg-black text-white">
+              <li className="flex gap-4">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#0a5aa8] to-[#073d73] text-white shadow-md">
                   <Globe className="size-[18px]" strokeWidth={2.25} aria-hidden />
                 </span>
                 <p className="pt-1.5 text-sm font-medium">
@@ -304,7 +342,7 @@ export function HomePage() {
           </div>
         </section>
 
-        <footer className="mt-10 text-center text-xs text-[#5a6b78]">
+        <footer className="mt-14 border-t border-white/40 pt-10 text-center text-xs text-[#5a6b78]">
           &copy; {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
         </footer>
       </div>
@@ -314,7 +352,7 @@ export function HomePage() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat on WhatsApp"
-        className="fixed bottom-6 right-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[#25d366] text-white shadow-lg transition-transform hover:scale-110"
+        className="fixed bottom-6 right-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[#25d366] text-white shadow-[0_8px_28px_rgba(37,211,102,0.45)] transition-[transform,box-shadow] hover:scale-110 hover:shadow-[0_12px_36px_rgba(37,211,102,0.55)]"
       >
         <span
           className="absolute inset-0 rounded-full bg-[#25d366]"

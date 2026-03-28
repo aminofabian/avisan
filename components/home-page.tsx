@@ -201,11 +201,11 @@ export function HomePage() {
                 ))}
               </div>
 
-              <div className="mt-6 flex flex-col gap-3">
-                <div className="rounded-2xl bg-gradient-to-r from-[#c41e3a] to-[#a01830] py-3.5 text-center text-sm font-semibold text-white shadow-[0_6px_20px_-4px_rgba(196,30,58,0.45)]">
+              <div className="mt-6 flex flex-col gap-2.5">
+                <div className="rounded-2xl border border-[#c41e3a]/15 bg-[#fdf6f7] py-3 text-center text-sm font-medium text-[#5c2832]">
                   Standard length: 5.9 m
                 </div>
-                <div className="rounded-2xl bg-gradient-to-r from-[#0a5aa8] to-[#073d73] py-3.5 text-center text-sm font-semibold text-white shadow-[0_6px_20px_-4px_rgba(10,90,168,0.4)]">
+                <div className="rounded-2xl border border-[#0a5aa8]/15 bg-[#f3f8fc] py-3 text-center text-sm font-medium text-[#0f4a73]">
                   Wall thickness: 2.2 mm
                 </div>
                 <a

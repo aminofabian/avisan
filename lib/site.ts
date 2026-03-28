@@ -38,8 +38,8 @@ export const siteConfig = {
   city: "Pokhara",
   /** Primary number for schema / tel: (WhatsApp uses whatsappDigits) */
   phone: "+9779857631256",
-  /** Digits only for wa.me (Nepal) */
-  whatsappDigits: "9779857631256",
+  /** Digits only for wa.me (Nepal) — floating chat button */
+  whatsappDigits: "9779768383935",
   email: "avisantraders@gmail.com",
   /** Multi-line contact card (display + tel href) */
   contactPhones: [

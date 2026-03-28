@@ -190,6 +190,30 @@
   100% { transform: scale(1.6); opacity: 0; }
 }
 
+@keyframes cs-float-gentle {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+
+@keyframes cs-rule-grow {
+  from { opacity: 0; transform: scaleX(0); }
+  to   { opacity: 1; transform: scaleX(1); }
+}
+
+/* Landing hero — product cutouts barely breathe above the façade */
+.cs-hero-float {
+  animation: cs-float-gentle 8s ease-in-out infinite;
+}
+.cs-hero-float-delay {
+  animation: cs-float-gentle 8s ease-in-out infinite;
+  animation-delay: -4s;
+}
+
+.cs-accent-rule-anim {
+  transform-origin: center;
+  animation: cs-rule-grow 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+}
+
 @keyframes cs-count-glow {
   0%,100% { text-shadow: 0 0 20px rgba(20,119,179,0.2); }
   50%     { text-shadow: 0 0 40px rgba(20,119,179,0.45); }
@@ -281,7 +305,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .cs-fade-in, .cs-float-slow, .cs-float-fast, .cs-mesh-bg, .cs-stagger > * {
+  .cs-fade-in, .cs-float-slow, .cs-float-fast, .cs-mesh-bg, .cs-stagger > *, .cs-hero-float, .cs-hero-float-delay, .cs-accent-rule-anim {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;

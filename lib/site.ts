@@ -15,29 +15,53 @@ export function getSiteUrl(): string {
 export const siteConfig = {
   name: "Avisan",
   legalName: "Avisan",
+  /**
+   * Served from `public/avisanlogo.png` (path is fixed — do not point elsewhere).
+   * Intrinsic size of the current asset (used by next/image to avoid skew).
+   */
+  logoPath: "/avisanlogo.png",
+  logoWidth: 461,
+  logoHeight: 311,
+  /** Bump this when you replace `public/avisanlogo.png` so caches fetch the new file. */
+  logoCacheKey: "2",
   tagline: "Stronger Profiles. Better Living.",
   titleTemplate: "%s | Avisan",
   /** Primary meta description (≈155 chars for SERP) */
   description:
-    "Avisan crafts premium UPVC profiles, sliding systems, and energy-efficient windows for architects, dealers, and builders in India. Launching soon — join the waitlist.",
+    "Avisan Window & Door Profiles — premium UPVC profiles engineered with German technology. Based in Pokhara, Nepal. Full site coming soon.",
   /** Longer blurb for Open Graph / rich snippets */
   longDescription:
-    "Discover Avisan: multi-chamber UPVC profiles, thermal-break sliding windows, and durable façade solutions engineered for Indian climates. Dealer programs, project support, and catalog access coming online.",
-  locale: "en_IN",
-  country: "IN",
-  region: "Gujarat",
-  city: "Surat",
-  email: "sales@avisan.in",
-  phone: "+919876543210",
-  sameAs: [] as string[],
+    "Avisan supplies premium UPVC window and door profiles for homes and projects in Nepal. Dealer support, specifications, and catalog access launching soon.",
+  locale: "en_NP",
+  country: "NP",
+  region: "Gandaki Province",
+  city: "Pokhara",
+  /** Primary number for schema / tel: (WhatsApp uses whatsappDigits) */
+  phone: "+9779857631256",
+  /** Digits only for wa.me (Nepal) */
+  whatsappDigits: "9779857631256",
+  email: "avisantraders@gmail.com",
+  /** Multi-line contact card (display + tel href) */
+  contactPhones: [
+    { display: "061-586515", href: "tel:+97761586515" },
+    { display: "9857631256", href: "tel:+9779857631256" },
+    { display: "9856083935", href: "tel:+9779856083935" },
+  ],
+  contactAddress: "BP Marga, Chauthe, Pokhara-14",
+  websiteUrl: "https://avisantraders.com",
+  websiteDisplay: "avisantraders.com",
+  sameAs: ["https://avisantraders.com"] as string[],
   keywords: [
-    "UPVC profiles India",
-    "UPVC windows Gujarat",
+    "UPVC profiles Nepal",
+    "UPVC windows Pokhara",
+    "window and door profiles",
     "sliding window systems",
-    "thermal insulation windows",
-    "UPVC dealer program",
-    "architectural fenestration",
-    "energy efficient windows",
     "Avisan UPVC",
+    "German technology UPVC",
   ],
 } as const
+
+/** Logo URL with cache-bust query (Next `/public` file + browser/CDN caches). */
+export function getLogoImageSrc(): string {
+  return `${siteConfig.logoPath}?v=${siteConfig.logoCacheKey}`
+}

@@ -3,7 +3,7 @@ import { Geist_Mono, Plus_Jakarta_Sans } from "next/font/google"
 
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
-import { getSiteUrl, siteConfig } from "@/lib/site"
+import { getLogoImageSrc, getSiteUrl, siteConfig } from "@/lib/site"
 import { cn } from "@/lib/utils"
 
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -21,6 +21,10 @@ const siteUrl = getSiteUrl()
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
+  icons: {
+    icon: [{ url: getLogoImageSrc(), type: "image/png" }],
+    apple: [{ url: getLogoImageSrc(), type: "image/png" }],
+  },
   title: {
     default: `${siteConfig.name} · ${siteConfig.tagline}`,
     template: siteConfig.titleTemplate,
@@ -53,9 +57,9 @@ export const metadata: Metadata = {
     description: siteConfig.longDescription,
     images: [
       {
-        url: "/avisanlogo.png",
-        width: 1536,
-        height: 1024,
+        url: getLogoImageSrc(),
+        width: siteConfig.logoWidth,
+        height: siteConfig.logoHeight,
         alt: `${siteConfig.name} — premium UPVC profiles & windows`,
         type: "image/png",
       },
@@ -70,7 +74,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${siteConfig.name} · ${siteConfig.tagline}`,
     description: siteConfig.description,
-    images: ["/upvc-sliding-windows-03b.jpg", "/avisanlogo.png"],
+    images: ["/upvc-sliding-windows-03b.jpg", getLogoImageSrc()],
   },
   robots: {
     index: true,
@@ -117,7 +121,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en-IN"
+      lang="en-NP"
       suppressHydrationWarning
       className={cn("antialiased", fontMono.variable, "font-sans", plusJakartaSans.variable)}
     >

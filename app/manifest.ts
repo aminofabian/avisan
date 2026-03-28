@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next"
 
-import { siteConfig } from "@/lib/site"
+import { getLogoImageSrc, siteConfig } from "@/lib/site"
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
@@ -16,9 +16,9 @@ export default function manifest(): MetadataRoute.Manifest {
     categories: ["business", "construction"],
     icons: [
       {
-        src: "/icon.png",
+        src: getLogoImageSrc(),
         type: "image/png",
-        sizes: "512x512",
+        sizes: `${siteConfig.logoWidth}x${siteConfig.logoHeight}`,
         purpose: "any",
       },
     ],

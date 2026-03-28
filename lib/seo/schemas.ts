@@ -1,4 +1,4 @@
-import { getSiteUrl, siteConfig } from "@/lib/site"
+import { getLogoImageSrc, getSiteUrl, siteConfig } from "@/lib/site"
 
 const SITE = getSiteUrl()
 
@@ -8,11 +8,12 @@ export function organizationJsonLd() {
     "@id": `${SITE}/#organization`,
     name: siteConfig.legalName,
     url: SITE,
-    logo: `${SITE}/avisanlogo.png`,
+    logo: `${SITE}${getLogoImageSrc()}`,
     email: siteConfig.email,
     telephone: siteConfig.phone,
     address: {
       "@type": "PostalAddress",
+      streetAddress: "BP Marga, Chauthe",
       addressLocality: siteConfig.city,
       addressRegion: siteConfig.region,
       addressCountry: siteConfig.country,
@@ -52,18 +53,6 @@ export function webPageJsonLd(path: string, name: string, description: string) {
     isPartOf: { "@id": `${SITE}/#website` },
     about: { "@id": `${SITE}/#organization` },
     inLanguage: siteConfig.locale,
-  }
-}
-
-export function contactPageJsonLd() {
-  return {
-    "@type": "ContactPage",
-    "@id": `${SITE}/contact#webpage`,
-    url: `${SITE}/contact`,
-    name: `Contact ${siteConfig.name}`,
-    description:
-      "Reach Avisan for dealer enquiries, project consultation, and UPVC catalog support. Surat, Gujarat, India.",
-    isPartOf: { "@id": `${SITE}/#website` },
   }
 }
 

@@ -233,7 +233,7 @@ export function HomePage() {
           </div>
           <p className="cs-gradient-text mt-5 text-3xl font-black uppercase tracking-[0.08em] sm:text-4xl">Coming soon</p>
           <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-[#4a5f6e]">
-            Catalog, specs, and dealer resources are almost here. Leave your email — we&apos;ll only write when it matters.
+            Catalog, specs, and dealer resources are almost here.
           </p>
           <a
             href={catalogPdfHref}
@@ -245,20 +245,6 @@ export function HomePage() {
             <Download className="size-4" aria-hidden />
             Download UPVC catalog (PDF)
           </a>
-          <form className="mt-8" noValidate aria-label="Notify me when we launch">
-            <div className="mx-auto flex max-w-md flex-col gap-2 rounded-2xl border border-[#bcd4e8] bg-white/90 p-2 shadow-[0_16px_40px_-12px_rgba(10,60,100,0.2)] backdrop-blur-md sm:h-[54px] sm:flex-row sm:items-center sm:rounded-full sm:pl-1 sm:pr-1.5">
-              <input
-                type="email"
-                name="email"
-                autoComplete="email"
-                placeholder="you@company.com"
-                className="cs-email-input h-12 flex-1 rounded-xl border-0 bg-transparent px-5 text-sm outline-none placeholder:text-[#8a9bab] sm:h-11 sm:rounded-full"
-              />
-              <button type="submit" className="cs-notify-button h-12 shrink-0 rounded-xl bg-gradient-to-r from-[#0a5aa8] to-[#073d73] px-8 text-sm font-semibold text-white sm:h-10 sm:rounded-full">
-                Notify me
-              </button>
-            </div>
-          </form>
         </div>
 
         {/* Contact card */}
@@ -269,17 +255,6 @@ export function HomePage() {
         >
           <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-[2fr_3fr] md:gap-10">
             <div className="flex flex-col items-center text-center md:items-start md:text-left">
-              <div
-                className="mb-4 grid h-10 w-40 grid-rows-2 overflow-hidden rounded border border-black/20 shadow-sm"
-                aria-hidden
-              >
-                <div className="relative flex items-center justify-center bg-[#003893]">
-                  <span className="rounded-full border border-white/85 bg-white px-1 py-px text-[9px] leading-none text-[#003893] shadow-sm">
-                    ☀<span className="text-[8px]">☽</span>
-                  </span>
-                </div>
-                <div className="bg-[#DC143C]" />
-              </div>
               <div className="w-full max-w-[280px]">
                 <Image
                   src={siteConfig.logoPath}

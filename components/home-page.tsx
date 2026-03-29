@@ -62,8 +62,8 @@ export function HomePage() {
       {/* md+: first screen fills viewport; mobile: natural document height */}
       <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col px-[max(1rem,env(safe-area-inset-left,0px))] pr-[max(1rem,env(safe-area-inset-right,0px))] pb-6 pt-[max(1.25rem,env(safe-area-inset-top,0px))] max-[380px]:px-3 sm:px-6 sm:pb-7 sm:pt-9 md:min-h-dvh md:px-10 md:pb-6 md:pt-10">
         <header className="flex shrink-0 flex-col items-center gap-4 text-center sm:flex-row sm:items-start sm:gap-8 sm:text-left md:gap-10">
-          {/* No entrance animation on logo — parent transform hurts sharpness */}
-          <div className="shrink-0 w-[min(100%,8.5rem)] sm:w-[min(100%,180px)] md:w-[200px]">
+          {/* Full intrinsic dimensions + whole-pixel layout widths + high-quality downscale (see globals .cs-header-logo) */}
+          <div className="cs-header-logo-wrap shrink-0 w-[min(100%,132px)] sm:w-[min(100%,232px)] md:w-[248px]">
             {/* eslint-disable-next-line @next/next/no-img-element -- full-res PNG with alpha; next/image can flatten transparency */}
             <img
               key={`header-logo-${siteConfig.logoCacheKey}`}
@@ -73,7 +73,7 @@ export function HomePage() {
               height={siteConfig.logoHeight}
               decoding="sync"
               fetchPriority="high"
-              className="mx-auto block h-auto w-[min(100%,7.25rem)] max-w-full object-contain sm:mx-0 sm:w-full max-[380px]:w-[6.5rem]"
+              className="cs-header-logo mx-auto block h-auto w-[min(100%,120px)] max-w-full object-contain object-center sm:mx-0 sm:w-full max-[380px]:w-[112px]"
             />
           </div>
 

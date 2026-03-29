@@ -16,14 +16,14 @@ export const siteConfig = {
   name: "Avisan",
   legalName: "Avisan",
   /**
-   * On-page brand mark — `public/avisan-header-mark.png` (1536×1024, RGBA). Renamed from `avs.png` so CDN/browser caches cannot keep stale art.
+   * On-page brand mark — `public/av.png` (1536×1024, RGBA). Bump `logoCacheKey` when the file changes.
    */
-  logoPath: "/avisan-header-mark.png",
+  logoPath: "/av.png",
   logoWidth: 1536,
   logoHeight: 1024,
   /** Bump when replacing the logo file so favicon / OG / JSON-LD caches refresh. */
   /** Change this string whenever you replace header/contact PNGs (cache bust). */
-  logoCacheKey: "11",
+  logoCacheKey: "13",
   tagline: "German-engineered profiles. Full window supply.",
   titleTemplate: "%s | Avisan",
   /** Primary meta description (≈155 chars for SERP) */

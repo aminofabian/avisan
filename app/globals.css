@@ -290,6 +290,21 @@
   }
   .cs-float-slow { animation: cs-float 5s ease-in-out infinite; }
   .cs-float-fast { animation: cs-float 3.8s ease-in-out infinite; animation-delay: 0.6s; }
+
+  /* Header mark: crisp downscale from 1536px source; avoids subpixel + compositor softness on some GPUs */
+  .cs-header-logo-wrap {
+    isolation: isolate;
+  }
+  .cs-header-logo {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    image-rendering: auto;
+  }
+  @supports (image-rendering: high-quality) {
+    .cs-header-logo {
+      image-rendering: high-quality;
+    }
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

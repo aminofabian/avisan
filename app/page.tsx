@@ -5,8 +5,9 @@ import { JsonLd } from "@/components/seo/json-ld"
 import { buildJsonLdGraph, webPageJsonLd } from "@/lib/seo/schemas"
 import { siteConfig } from "@/lib/site"
 
-const homeTitle = `UPVC profiles & window supply — full site launching soon`
-const homeDescription = siteConfig.description
+const homeTitle = `The site is coming soon — ${siteConfig.name}`
+const homeDescription =
+  "The Avisan site is coming soon. German-engineered UPVC profiles, fabrication materials & window hardware — Pokhara & Nepal. Download the catalog or message us on WhatsApp while we finish the full site."
 
 export const metadata: Metadata = {
   title: homeTitle,
@@ -14,12 +15,12 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
-    title: `${siteConfig.name} · ${siteConfig.tagline}`,
-    description: siteConfig.longDescription,
+    title: `${siteConfig.name} · The site is coming soon`,
+    description: homeDescription,
     url: "/",
   },
   twitter: {
-    title: `${siteConfig.name} · ${siteConfig.tagline}`,
+    title: `${siteConfig.name} · The site is coming soon`,
     description: homeDescription,
   },
 }
@@ -29,7 +30,7 @@ export default function Home() {
     <>
       <JsonLd
         data={buildJsonLdGraph([
-          webPageJsonLd("/", `${siteConfig.name} — ${homeTitle}`, homeDescription),
+          webPageJsonLd("/", `${siteConfig.name} — the site is coming soon`, homeDescription),
         ])}
       />
       <HomePage />

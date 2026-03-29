@@ -144,10 +144,43 @@
 
 /* --- Gradient headline --- */
 .cs-gradient-text {
-  background: linear-gradient(128deg, #1a8bc9 0%, #1477b3 38%, #0d4a7a 88%, #0a3d66 100%);
+  background: linear-gradient(
+    122deg,
+    #3eb0e8 0%,
+    #1f9fe0 14%,
+    #1477b3 42%,
+    #0d4a7a 72%,
+    #082f52 100%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* Film grain — sits over photo; keeps the page from feeling flat */
+.cs-noise-overlay {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23a)'/%3E%3C/svg%3E");
+}
+
+/* Coming soon capsule — glass + inner highlight */
+.cs-soon-pill {
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.55) inset,
+    0 2px 0 rgba(255, 255, 255, 0.35) inset,
+    0 8px 28px -8px rgba(10, 90, 168, 0.28);
+}
+
+.cs-soon-banner {
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.5) inset,
+    0 1px 0 rgba(255, 255, 255, 0.4) inset,
+    0 12px 36px -14px rgba(15, 55, 95, 0.2);
+  letter-spacing: 0.14em;
 }
 
 /* --- Glass card --- */
@@ -190,23 +223,9 @@
   100% { transform: scale(1.6); opacity: 0; }
 }
 
-@keyframes cs-float-gentle {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-6px); }
-}
-
 @keyframes cs-rule-grow {
   from { opacity: 0; transform: scaleX(0); }
   to   { opacity: 1; transform: scaleX(1); }
-}
-
-/* Landing hero — product cutouts barely breathe above the façade */
-.cs-hero-float {
-  animation: cs-float-gentle 8s ease-in-out infinite;
-}
-.cs-hero-float-delay {
-  animation: cs-float-gentle 8s ease-in-out infinite;
-  animation-delay: -4s;
 }
 
 .cs-accent-rule-anim {
@@ -240,13 +259,22 @@
   }
 
   .cs-shop-button {
-    box-shadow: 0 4px 14px rgba(20,119,179,0.35);
-    transition: transform 220ms ease, box-shadow 220ms ease, filter 220ms ease;
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.45) inset,
+      0 4px 18px rgba(20, 119, 179, 0.32);
+    transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 220ms ease, filter 220ms ease,
+      border-color 220ms ease, background-color 220ms ease;
   }
   .cs-shop-button:hover {
-    box-shadow: 0 10px 28px rgba(20,76,145,0.45);
-    filter: brightness(1.06);
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.55) inset,
+      0 14px 36px rgba(20, 76, 145, 0.38);
+    filter: brightness(1.05);
     transform: translateY(-2px);
+  }
+  .cs-shop-button:active {
+    transform: translateY(0);
+    filter: brightness(0.98);
   }
 
   .cs-nav-link {
@@ -308,12 +336,16 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .cs-fade-in, .cs-float-slow, .cs-float-fast, .cs-mesh-bg, .cs-stagger > *, .cs-hero-float, .cs-hero-float-delay, .cs-accent-rule-anim {
+  .cs-fade-in, .cs-float-slow, .cs-float-fast, .cs-mesh-bg, .cs-stagger > *, .cs-accent-rule-anim {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
   }
   .cs-shop-button, .cs-social-button, .cs-footer-link, .cs-nav-link, .cs-float-card {
     transition: none !important;
+  }
+  .cs-soon-ping {
+    animation: none !important;
+    opacity: 0 !important;
   }
 }

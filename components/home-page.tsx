@@ -1,4 +1,4 @@
-import { Download, Mail, MapPin, Phone, Recycle, ShieldCheck } from "lucide-react"
+import { Download, Mail, MapPin, Phone, Recycle } from "lucide-react"
 import Image from "next/image"
 import { Fragment } from "react"
 
@@ -6,16 +6,10 @@ import { getContactLogoSrc, getLogoImageSrc, siteConfig } from "@/lib/site"
 
 const waDigits = siteConfig.whatsappDigits
 
-const profileHeroSrc = "/upvc-profile-500x500-removebg-preview.png"
 const heroVillaSrc =
   "/luxury-villa-saint-jean-cap-ferrat-architect-vielliard-francheteau-1-1536x867.avif"
-const windowCutoutSrc = "/upvc-sliding-windows-03b-removebg-preview.png"
 /** Product catalog — `public/UPVC (2).pdf` */
 const catalogPdfHref = "/UPVC%20(2).pdf"
-
-/** Stronger edge feather + lighter shadow so cutouts sit quietly on the façade */
-const floatBlend =
-  "[mask-image:radial-gradient(ellipse_100%_98%_at_50%_52%,#000_28%,#00000066_62%,transparent_92%)] [-webkit-mask-image:radial-gradient(ellipse_100%_98%_at_50%_52%,#000_28%,#00000066_62%,transparent_92%)] [mask-mode:alpha]"
 
 /** Certification marks — `public/certifications/` */
 const certDiscs = [
@@ -35,6 +29,12 @@ const sectionEyebrow =
 export function HomePage() {
   return (
     <main className="relative min-h-dvh overflow-x-hidden overflow-y-auto bg-[#c4daf0] pb-[env(safe-area-inset-bottom,0px)] text-[#0c1a2a] selection:bg-[#1477b3]/25 selection:text-[#06101e]">
+      <a
+        href="#contact"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-xl focus:border focus:border-sky-300/60 focus:bg-white/95 focus:px-4 focus:py-2.5 focus:text-sm focus:font-semibold focus:text-[#084a8f] focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#1477b3]/45 motion-reduce:focus:transition-none"
+      >
+        Skip to contact
+      </a>
       {/* Full-viewport photo — public/pexels-funiki-11438880.jpg */}
       <div className="pointer-events-none fixed inset-0">
         <Image
@@ -57,6 +57,11 @@ export function HomePage() {
           className="absolute inset-0 bg-[radial-gradient(ellipse_90%_60%_at_50%_100%,rgba(20,119,179,0.06)_0%,transparent_45%)]"
           aria-hidden
         />
+        <div
+          className="absolute inset-0 bg-[radial-gradient(ellipse_120%_85%_at_50%_50%,transparent_40%,rgba(6,22,42,0.08)_100%)]"
+          aria-hidden
+        />
+        <div className="cs-noise-overlay" aria-hidden />
       </div>
 
       {/* md+: first screen fills viewport; mobile: natural document height */}
@@ -78,15 +83,25 @@ export function HomePage() {
           </div>
 
           <div className="cs-fade-in flex min-w-0 w-full flex-1 flex-col items-center sm:items-start">
-            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#0a5aa8]/85 max-[380px]:text-[9px] sm:text-[11px] sm:tracking-[0.24em]">
+            <div className="flex flex-wrap items-center justify-center gap-2 sm:justify-start">
+              <span className="cs-soon-pill inline-flex items-center gap-2 rounded-full border border-[#0a5aa8]/32 bg-white/80 px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.16em] text-[#084a8f] backdrop-blur-md max-[380px]:px-2.5 max-[380px]:py-1 max-[380px]:text-[8px] sm:text-[10px] sm:tracking-[0.18em]">
+                <span className="relative flex h-2 w-2 shrink-0" aria-hidden>
+                  <span className="cs-soon-ping absolute inline-flex h-full w-full animate-ping rounded-full bg-[#0a5aa8]/40" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-[#0a5aa8] shadow-[0_0_0_2px_rgba(255,255,255,0.85)]" />
+                </span>
+                The site is coming soon
+              </span>
+            </div>
+            <p className="mt-3 text-[10px] font-bold uppercase tracking-[0.2em] text-[#0a5aa8]/85 max-[380px]:mt-2 max-[380px]:text-[9px] sm:mt-3.5 sm:text-[11px] sm:tracking-[0.24em]">
               Profiles · fabrication · hardware
             </p>
             <h1 className="cs-gradient-text mt-1 max-w-[22rem] text-balance text-[clamp(1.35rem,6.2vmin+0.4rem,2.75rem)] font-black uppercase leading-[0.98] tracking-[-0.02em] sm:mt-1.5 sm:max-w-4xl">
               UPVC Profiles
             </h1>
-            <p className="mt-2 max-w-xl text-pretty text-[13px] font-medium leading-relaxed text-[#2a3d4d] max-[380px]:text-[12px] sm:text-sm sm:leading-snug">
+            <p className="mt-2 max-w-xl text-pretty text-[13px] font-medium leading-relaxed text-[#2a3d4d] max-[380px]:text-[12px] sm:mt-2.5 sm:text-sm sm:leading-snug">
               Precision UPVC profile, plus{" "}
-              <span className="font-semibold text-[#1a3040]">fabrication materials and hardware</span> for UPVC and aluminum windows—fewer vendors, German-spec quality.
+              <span className="font-semibold text-[#1a3040]">fabrication materials and hardware</span> for UPVC and
+              aluminum windows—fewer vendors, German-spec quality.
             </p>
             <div className="mt-4 flex w-full max-w-xl flex-col items-stretch gap-2.5 sm:max-w-md sm:flex-row sm:flex-wrap sm:items-start sm:gap-3">
               <a
@@ -94,24 +109,28 @@ export function HomePage() {
                 download="Avisan-UPVC-catalog.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="cs-shop-button inline-flex w-full min-h-11 shrink-0 touch-manipulation items-center justify-center gap-2 rounded-xl border-2 border-[#0a5aa8]/32 bg-sky-100/55 px-5 py-3 text-sm font-semibold text-[#084a8f] shadow-[0_6px_22px_-6px_rgba(10,90,168,0.18)] backdrop-blur-md transition-[border-color,background-color,transform,box-shadow] active:scale-[0.99] hover:border-[#0a5aa8]/45 hover:bg-sky-50/75 hover:shadow-[0_10px_28px_-8px_rgba(10,90,168,0.2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1477b3]/50 sm:min-h-10 sm:w-auto sm:py-2.5"
+                className="cs-shop-button inline-flex w-full min-h-11 shrink-0 touch-manipulation items-center justify-center gap-2 rounded-xl border-2 border-[#0a5aa8]/32 bg-sky-100/55 px-5 py-3 text-sm font-semibold text-[#084a8f] backdrop-blur-md active:scale-[0.99] hover:border-[#0a5aa8]/48 hover:bg-sky-50/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1477b3]/55 sm:min-h-10 sm:w-auto sm:py-2.5"
               >
                 <Download className="size-4 shrink-0 opacity-90" aria-hidden />
                 Profile catalog (PDF)
               </a>
               <p className="max-w-md text-center text-[11px] leading-snug text-[#5a6b78] max-[380px]:px-1 sm:text-left sm:text-xs">
-                Full site, specs, and dealer tools are on the way—WhatsApp or call if you need something now.
+                When the site goes live you&apos;ll get deeper catalogs, specs, and dealer tools—WhatsApp or call us today.
               </p>
             </div>
           </div>
         </header>
 
-        <article className="relative mx-auto mt-4 flex w-full max-w-[980px] flex-col overflow-hidden rounded-[20px] border border-sky-200/45 bg-sky-100/25 shadow-[0_20px_56px_-22px_rgba(8,45,85,0.38),inset_0_1px_0_rgba(255,255,255,0.25)] backdrop-blur-md ring-1 ring-sky-200/30 max-md:flex-none sm:mt-6 sm:rounded-[24px] md:mt-5 md:flex-1 md:min-h-0 md:rounded-[28px]">
+        <article className="relative mx-auto mt-4 flex w-full max-w-[980px] flex-col overflow-hidden rounded-[20px] border border-sky-200/45 bg-gradient-to-b from-sky-50/35 via-sky-100/25 to-sky-100/20 shadow-[0_20px_56px_-22px_rgba(8,45,85,0.38),inset_0_1px_0_rgba(255,255,255,0.35)] backdrop-blur-md ring-1 ring-white/25 max-md:flex-none sm:mt-6 sm:rounded-[24px] md:mt-5 md:flex-1 md:min-h-0 md:rounded-[28px] md:transition-[box-shadow,transform] md:duration-500 md:ease-out motion-reduce:md:hover:translate-y-0 md:hover:-translate-y-0.5 md:hover:shadow-[0_28px_72px_-24px_rgba(8,45,85,0.48)]">
           <p className="sr-only">
-            Hero: premium residence glazing with UPVC profile cross-section and sliding window. Avisan supplies German-engineered UPVC profiles plus fabrication materials and hardware for window systems.
+            The Avisan site is coming soon. Hero image: modern home with large glass facades. German-engineered UPVC
+            profiles plus fabrication materials and hardware for window systems.
           </p>
 
           <div className="relative flex min-h-0 flex-1 flex-col overflow-hidden rounded-[14px] p-1.5 sm:rounded-[22px] sm:p-2.5 max-md:flex-none md:flex-1">
+            <p className="cs-soon-banner mb-1.5 rounded-lg border border-sky-300/50 bg-gradient-to-r from-white/55 via-white/40 to-sky-50/45 px-3 py-2 text-center text-[10px] font-bold uppercase leading-snug text-[#1a3040] backdrop-blur-sm sm:mb-2 sm:px-4 sm:py-2.5 sm:text-[11px] md:text-xs">
+              The site is coming soon
+            </p>
             {/* Mobile: bounded height; md+: grows in flex column */}
             <div className="relative h-[min(42svh,280px)] min-h-[200px] w-full shrink-0 overflow-hidden rounded-[12px] border border-sky-300/50 shadow-[inset_0_0_0_1px_rgba(0,0,0,0.04),0_16px_44px_-16px_rgba(0,40,80,0.26)] max-[380px]:h-[min(38svh,240px)] max-[380px]:min-h-[180px] sm:h-[min(44svh,320px)] sm:min-h-[220px] sm:rounded-[16px] md:h-auto md:min-h-[260px] md:flex-1 md:rounded-[18px]">
               <Image
@@ -126,46 +145,11 @@ export function HomePage() {
                 className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_88%_72%_at_50%_38%,transparent_18%,rgba(0,25,50,0.32)_100%),linear-gradient(to_top,rgba(0,30,55,0.5)_0%,transparent_48%,rgba(0,20,45,0.18)_100%)]"
                 aria-hidden
               />
-
-              <div className="absolute right-2 top-2 z-[15] max-w-[min(100%,calc(100%-1rem))] sm:right-4 sm:top-4">
-                <div className="flex max-w-full items-center gap-1.5 rounded-xl border border-emerald-800/18 bg-emerald-50/45 px-2 py-1.5 shadow-[0_6px_22px_-10px_rgba(5,80,50,0.22)] backdrop-blur-md max-[380px]:gap-1 max-[380px]:px-1.5 sm:gap-2.5 sm:rounded-3xl sm:px-3.5 sm:py-2.5">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-emerald-600/25 bg-gradient-to-br from-emerald-100/95 to-emerald-200/90 shadow-sm sm:h-10 sm:w-10 sm:rounded-2xl">
-                    <ShieldCheck className="size-4 text-emerald-900 sm:size-5" strokeWidth={2.4} aria-hidden />
-                  </div>
-                  <p className="text-[10px] font-black uppercase leading-tight tracking-wide text-[#0c1a2a] max-[380px]:max-w-[9rem] max-[380px]:text-[9px] sm:text-xs sm:max-w-none md:text-sm">
-                    20-year warranty
-                  </p>
-                </div>
-              </div>
-
-              <div className="cs-hero-float absolute bottom-2 left-1.5 z-10 w-[min(40%,132px)] opacity-[0.88] max-[380px]:w-[min(38%,118px)] sm:bottom-4 sm:left-3 sm:w-[min(34%,200px)]">
-                <div className={`relative aspect-[500/379] w-full ${floatBlend}`}>
-                  <Image
-                    src={profileHeroSrc}
-                    alt="UPVC profile cross-section showing wall thickness and chamber design"
-                    fill
-                    className="object-contain object-center brightness-[1.01] contrast-[0.97] saturate-[0.88] drop-shadow-[0_4px_18px_rgba(25,55,90,0.1)]"
-                    sizes="(max-width: 640px) 160px, 220px"
-                  />
-                </div>
-              </div>
-
-              <div className="cs-hero-float-delay absolute bottom-2 right-1.5 z-10 w-[min(38%,128px)] opacity-[0.88] max-[380px]:w-[min(36%,112px)] sm:bottom-4 sm:right-3 sm:w-[min(32%,190px)]">
-                <div className={`relative aspect-square w-full ${floatBlend}`}>
-                  <Image
-                    src={windowCutoutSrc}
-                    alt="White UPVC sliding window panel — example finished system"
-                    fill
-                    className="object-contain object-center brightness-[1.01] contrast-[0.97] saturate-[0.88] drop-shadow-[0_4px_18px_rgba(25,55,90,0.1)]"
-                    sizes="(max-width: 640px) 150px, 200px"
-                  />
-                </div>
-              </div>
             </div>
 
           {/* Specs — compact on small screens; certifications wrap ~4+3 via max-width */}
           <div className="relative z-[3] mx-2 -mt-8 mb-2 flex shrink-0 justify-center max-[380px]:mx-1.5 max-[380px]:-mt-7 sm:mx-5 sm:-mt-12 sm:mb-3 md:-mt-14">
-            <div className="flex w-full max-w-4xl flex-col rounded-xl border border-sky-300/55 bg-[#f2f7fb]/90 p-2 shadow-[0_18px_48px_-18px_rgba(15,55,95,0.22)] backdrop-blur-xl max-[380px]:px-2 max-[380px]:py-1.5 sm:rounded-2xl sm:p-4 lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:items-start lg:gap-x-8 lg:p-5">
+            <div className="flex w-full max-w-4xl flex-col rounded-xl border border-sky-200/60 bg-gradient-to-br from-[#fafdff]/95 via-[#f2f7fb]/92 to-[#e8f2f9]/88 p-2 shadow-[0_18px_48px_-18px_rgba(15,55,95,0.22),inset_0_1px_0_rgba(255,255,255,0.85)] backdrop-blur-xl max-[380px]:px-2 max-[380px]:py-1.5 sm:rounded-2xl sm:p-4 lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:items-start lg:gap-x-8 lg:p-5">
               <div>
                   <p className={`text-center lg:text-left ${sectionEyebrow}`}>Laminate finishes</p>
                   <div className="mt-2 flex justify-center gap-3 sm:mt-3 sm:gap-6 lg:justify-start">
@@ -198,7 +182,7 @@ export function HomePage() {
                           <div
                             key={c.key}
                             title={title}
-                            className="flex h-9 w-9 cursor-default items-center justify-center rounded-lg border border-[#0a5aa8]/22 bg-white/95 shadow-sm sm:h-10 sm:w-10"
+                            className="flex h-9 w-9 cursor-default items-center justify-center rounded-lg border border-[#0a5aa8]/22 bg-white/95 shadow-sm transition duration-200 ease-out motion-reduce:hover:translate-y-0 hover:-translate-y-0.5 hover:border-[#0a5aa8]/35 hover:shadow-md sm:h-10 sm:w-10"
                           >
                             <Recycle className="size-[1.125rem] text-[#0a5aa8] sm:size-5" strokeWidth={2.25} aria-hidden />
                           </div>
@@ -208,7 +192,7 @@ export function HomePage() {
                         <div
                           key={c.key}
                           title={title}
-                          className="relative h-9 w-9 shrink-0 cursor-default overflow-hidden rounded-lg border border-[#0a5aa8]/22 bg-white/95 shadow-sm sm:h-10 sm:w-10"
+                          className="relative h-9 w-9 shrink-0 cursor-default overflow-hidden rounded-lg border border-[#0a5aa8]/22 bg-white/95 shadow-sm transition duration-200 ease-out motion-reduce:hover:translate-y-0 hover:-translate-y-0.5 hover:border-[#0a5aa8]/35 hover:shadow-md sm:h-10 sm:w-10"
                         >
                           <Image
                             src={c.src}
@@ -244,7 +228,7 @@ export function HomePage() {
           className="mx-auto w-full max-w-[min(100%,720px)] shrink-0 pt-4 max-[380px]:pt-3 md:mt-auto sm:pt-5"
           aria-label="Contact information"
         >
-          <div className="flex flex-col items-stretch gap-2 rounded-[1.1rem] border border-dashed border-black/80 bg-sky-100/30 px-4 py-3 shadow-[0_10px_32px_-14px_rgba(8,45,85,0.22)] ring-1 ring-sky-200/40 backdrop-blur-2xl max-[380px]:px-3.5 max-[380px]:py-2.5 sm:flex-row sm:items-start sm:justify-between sm:gap-4 sm:rounded-[1.5rem] sm:px-5 sm:py-3.5">
+          <div className="flex flex-col items-stretch gap-2 rounded-[1.1rem] border border-dashed border-[#0c1a2a]/22 bg-gradient-to-br from-white/55 via-sky-50/40 to-sky-100/35 px-4 py-3 shadow-[0_10px_32px_-14px_rgba(8,45,85,0.22),inset_0_1px_0_rgba(255,255,255,0.65)] ring-1 ring-sky-200/50 backdrop-blur-2xl max-[380px]:px-3.5 max-[380px]:py-2.5 sm:flex-row sm:items-start sm:justify-between sm:gap-4 sm:rounded-[1.5rem] sm:px-5 sm:py-3.5">
             <div className="flex w-full shrink-0 justify-center sm:w-auto sm:justify-start">
               <div className="cs-brand-mark-wrap shrink-0 w-[min(100%,152px)] max-[380px]:w-[128px] sm:w-[176px]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -279,7 +263,7 @@ export function HomePage() {
                       )}
                       <a
                         href={entry.href}
-                        className="touch-manipulation text-black underline-offset-2 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+                        className="touch-manipulation text-[#0c1a2a] underline-offset-[3px] decoration-sky-600/35 transition-colors hover:text-[#084a8f] hover:decoration-[#1477b3]/55 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1477b3]/60"
                       >
                         {entry.display}
                       </a>
@@ -294,7 +278,7 @@ export function HomePage() {
                 <p className="min-w-0 text-xs font-bold leading-snug sm:text-[13px] sm:leading-snug">
                   <a
                     href={`mailto:${siteConfig.email}`}
-                    className="touch-manipulation break-all text-black underline-offset-2 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black sm:break-normal"
+                    className="touch-manipulation break-all text-[#0c1a2a] underline-offset-[3px] decoration-sky-600/35 transition-colors hover:text-[#084a8f] hover:decoration-[#1477b3]/55 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1477b3]/60 sm:break-normal"
                   >
                     {siteConfig.email}
                   </a>
@@ -315,7 +299,7 @@ export function HomePage() {
         <p className="max-w-prose mx-auto">
           &copy; {new Date().getFullYear()} {siteConfig.name}. German-engineered UPVC profiles &amp; window supply — Pokhara, Nepal.
         </p>
-        <p className="mt-1 text-[11px] text-[#2a4050] sm:text-xs">All rights reserved.</p>
+        <p className="mt-1 text-[11px] text-[#2a4050] sm:text-xs">The site is coming soon · All rights reserved.</p>
       </footer>
 
       <a
@@ -323,7 +307,7 @@ export function HomePage() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Message Avisan on WhatsApp"
-        className="fixed z-40 flex h-14 w-14 touch-manipulation items-center justify-center rounded-full bg-[#25d366] text-white shadow-[0_8px_28px_rgba(37,211,102,0.42)] transition-[transform,box-shadow] hover:scale-105 hover:shadow-[0_12px_36px_rgba(37,211,102,0.5)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/90 max-[380px]:h-12 max-[380px]:w-12"
+        className="fixed z-40 flex h-14 w-14 touch-manipulation items-center justify-center rounded-full bg-[#25d366] text-white shadow-[0_8px_28px_rgba(37,211,102,0.42)] ring-2 ring-white/15 transition-[transform,box-shadow,ring-color] duration-200 hover:scale-105 hover:shadow-[0_14px_40px_rgba(37,211,102,0.48)] hover:ring-white/25 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white focus-visible:ring-white/40 max-[380px]:h-12 max-[380px]:w-12"
         style={{
           bottom: "max(1.25rem, env(safe-area-inset-bottom, 0px))",
           right: "max(1.25rem, env(safe-area-inset-right, 0px))",

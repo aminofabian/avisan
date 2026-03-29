@@ -24,14 +24,14 @@ export const siteConfig = {
   logoHeight: 311,
   /** Bump this when you replace `public/avisanlogo.png` so caches fetch the new file. */
   logoCacheKey: "2",
-  tagline: "Stronger Profiles. Better Living.",
+  tagline: "German-engineered profiles. Full window supply.",
   titleTemplate: "%s | Avisan",
   /** Primary meta description (≈155 chars for SERP) */
   description:
-    "Avisan Window & Door Profiles — premium UPVC profiles engineered with German technology. Based in Pokhara, Nepal. Full site coming soon.",
+    "Avisan — German-engineered UPVC profiles, fabrication materials & hardware for UPVC & aluminum windows. Dealers & builders, Pokhara & Nepal-wide.",
   /** Longer blurb for Open Graph / rich snippets */
   longDescription:
-    "Avisan supplies premium UPVC window and door profiles for homes and projects in Nepal. Dealer support, specifications, and catalog access launching soon.",
+    "We lead with premium UPVC profiles and back every job with fabrication materials and hardware for UPVC and aluminum window systems. Avisan supports dealers, fabricators, and serious projects from Pokhara—with catalogs, specs, and partner resources rolling out online soon.",
   locale: "en_NP",
   country: "NP",
   region: "Gandaki Province",
@@ -54,6 +54,9 @@ export const siteConfig = {
   keywords: [
     "UPVC profiles Nepal",
     "UPVC windows Pokhara",
+    "aluminum windows Nepal",
+    "window hardware Pokhara",
+    "UPVC fabrication materials",
     "window and door profiles",
     "sliding window systems",
     "Avisan UPVC",

@@ -5,7 +5,7 @@ import { JsonLd } from "@/components/seo/json-ld"
 import { buildJsonLdGraph, webPageJsonLd } from "@/lib/seo/schemas"
 import { siteConfig } from "@/lib/site"
 
-const homeTitle = `Premium UPVC profiles & windows — launching soon`
+const homeTitle = `UPVC profiles & window supply — full site launching soon`
 const homeDescription = siteConfig.description
 
 export const metadata: Metadata = {

@@ -4,7 +4,7 @@ import { getLogoImageSrc, siteConfig } from "@/lib/site"
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: `${siteConfig.name} · UPVC profiles & windows`,
+    name: `${siteConfig.name} · Profiles & window supply`,
     short_name: siteConfig.name,
     description: siteConfig.description,
     start_url: "/",

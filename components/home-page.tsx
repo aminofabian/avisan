@@ -228,7 +228,7 @@ export function HomePage() {
           className="mx-auto w-full max-w-[min(100%,720px)] shrink-0 pt-5 max-[380px]:pt-4 md:mt-auto sm:pt-6"
           aria-label="Contact information"
         >
-          <div className="flex flex-col items-stretch gap-3 rounded-[1.25rem] border border-dashed border-black/80 bg-white/[0.18] px-5 py-4 shadow-[0_10px_32px_-14px_rgba(8,45,85,0.22)] ring-1 ring-white/35 backdrop-blur-2xl max-[380px]:px-4 max-[380px]:py-3.5 sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:rounded-[1.75rem] sm:px-6 sm:py-5">
+          <div className="flex flex-col items-stretch gap-3 rounded-[1.25rem] border border-dashed border-black/80 bg-white/[0.18] px-5 py-4 shadow-[0_10px_32px_-14px_rgba(8,45,85,0.22)] ring-1 ring-white/35 backdrop-blur-2xl max-[380px]:px-4 max-[380px]:py-3.5 sm:flex-row sm:items-start sm:justify-between sm:gap-6 sm:rounded-[1.75rem] sm:px-6 sm:py-5">
             <div className="flex w-full shrink-0 justify-center sm:w-auto sm:justify-start">
               <Image
                 src={siteConfig.logoPath}
@@ -240,15 +240,15 @@ export function HomePage() {
               />
             </div>
 
-            <ul className="flex w-full min-w-0 flex-1 flex-col gap-3">
-              <li className="flex items-center gap-3">
+            <ul className="grid w-full min-w-0 flex-1 grid-cols-1 gap-y-3">
+              <li className="grid grid-cols-[auto_1fr] items-center gap-x-3">
                 <span
                   className="flex size-8 shrink-0 touch-manipulation items-center justify-center rounded-md bg-black sm:size-9"
                   aria-hidden
                 >
                   <Phone className="size-3.5 text-white sm:size-4" strokeWidth={2.35} />
                 </span>
-                <p className="flex min-w-0 flex-1 flex-row flex-wrap items-center gap-x-2 gap-y-1 text-left text-xs font-bold leading-snug text-black sm:text-[13px]">
+                <p className="flex min-w-0 flex-row flex-wrap items-center gap-x-2 gap-y-1 text-left text-xs font-bold leading-5 text-black sm:text-[13px] sm:leading-5">
                   {siteConfig.contactPhones.map((entry, i) => (
                     <Fragment key={entry.href}>
                       {i > 0 && (
@@ -258,7 +258,7 @@ export function HomePage() {
                       )}
                       <a
                         href={entry.href}
-                        className="touch-manipulation rounded-sm py-0.5 text-black underline-offset-2 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+                        className="touch-manipulation text-black underline-offset-2 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
                       >
                         {entry.display}
                       </a>
@@ -266,11 +266,11 @@ export function HomePage() {
                   ))}
                 </p>
               </li>
-              <li className="flex items-center gap-3">
+              <li className="grid grid-cols-[auto_1fr] items-center gap-x-3">
                 <span className="flex size-8 shrink-0 items-center justify-center rounded-md bg-black sm:size-9" aria-hidden>
                   <Mail className="size-3.5 text-white sm:size-4" strokeWidth={2.35} />
                 </span>
-                <p className="min-w-0 flex-1 break-words text-xs font-bold leading-snug sm:text-[13px]">
+                <p className="min-w-0 text-xs font-bold leading-5 sm:text-[13px] sm:leading-5">
                   <a
                     href={`mailto:${siteConfig.email}`}
                     className="touch-manipulation break-all text-black underline-offset-2 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black sm:break-normal"
@@ -279,17 +279,17 @@ export function HomePage() {
                   </a>
                 </p>
               </li>
-              <li className="flex items-start gap-3">
-                <span className="mt-px flex size-8 shrink-0 items-center justify-center rounded-md bg-black sm:size-9" aria-hidden>
+              <li className="grid grid-cols-[auto_1fr] items-center gap-x-3">
+                <span className="flex size-8 shrink-0 items-center justify-center rounded-md bg-black sm:size-9" aria-hidden>
                   <MapPin className="size-3.5 text-white sm:size-4" strokeWidth={2.35} />
                 </span>
-                <p className="min-w-0 flex-1 text-pretty pt-px text-xs font-bold leading-snug text-black sm:text-[13px]">{siteConfig.contactAddress}</p>
+                <p className="min-w-0 text-pretty text-xs font-bold leading-5 text-black sm:text-[13px] sm:leading-5">{siteConfig.contactAddress}</p>
               </li>
-              <li className="flex items-center gap-3">
+              <li className="grid grid-cols-[auto_1fr] items-center gap-x-3">
                 <span className="flex size-8 shrink-0 items-center justify-center rounded-md bg-black sm:size-9" aria-hidden>
                   <Globe className="size-3.5 text-white sm:size-4" strokeWidth={2.35} />
                 </span>
-                <p className="min-w-0 flex-1 text-xs font-bold leading-snug sm:text-[13px]">
+                <p className="min-w-0 text-xs font-bold leading-5 sm:text-[13px] sm:leading-5">
                   <a
                     href={siteConfig.websiteUrl}
                     target="_blank"

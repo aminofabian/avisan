@@ -1,4 +1,4 @@
-import { Download, Leaf, Mail, MapPin, Phone, Recycle, ShieldCheck } from "lucide-react"
+import { Download, Mail, MapPin, Phone, Recycle, ShieldCheck } from "lucide-react"
 import Image from "next/image"
 import { Fragment } from "react"
 
@@ -17,16 +17,16 @@ const catalogPdfHref = "/UPVC.pdf"
 const floatBlend =
   "[mask-image:radial-gradient(ellipse_100%_98%_at_50%_52%,#000_28%,#00000066_62%,transparent_92%)] [-webkit-mask-image:radial-gradient(ellipse_100%_98%_at_50%_52%,#000_28%,#00000066_62%,transparent_92%)] [mask-mode:alpha]"
 
-/** Certification discs on the specs card */
+/** Certification marks — `public/certifications/` */
 const certDiscs = [
-  { label: "ISO" },
-  { label: "IAF" },
-  { label: "CE" },
-  { label: "RoHS" },
-  { label: "Pb", title: "Lead-free" },
-  { icon: "recycle" as const, title: "Recyclable" },
-  { icon: "leaf" as const, title: "Eco-friendly" },
-]
+  { key: "iso", src: "/certifications/iso.jpeg", alt: "ISO certification mark" },
+  { key: "iaf", src: "/certifications/IAF.jpeg", alt: "IAF certification mark" },
+  { key: "ce", src: "/certifications/ce.png", alt: "CE marking" },
+  { key: "rohs", src: "/certifications/rohs.png", alt: "RoHS compliance mark" },
+  { key: "pb", src: "/certifications/pb.webp", alt: "Lead-free marking", title: "Lead-free" },
+  { key: "recycle", icon: "recycle" as const, title: "Recyclable" },
+  { key: "eco", src: "/certifications/eco.png", alt: "Eco-friendly mark", title: "Eco-friendly" },
+] as const
 
 /** Specs card section titles — dark enough for glass / photo behind */
 const sectionEyebrow =
@@ -193,10 +193,10 @@ export function HomePage() {
                   <div className="flex flex-wrap justify-center gap-2 sm:justify-start">
                     {certDiscs.map((c) => {
                       const title = "title" in c ? c.title : undefined
-                      if (c.icon === "recycle") {
+                      if ("icon" in c) {
                         return (
                           <div
-                            key="recycle"
+                            key={c.key}
                             title={title}
                             className="flex h-9 w-9 cursor-default items-center justify-center rounded-lg border border-[#0a5aa8]/22 bg-white/95 shadow-sm sm:h-10 sm:w-10"
                           >
@@ -204,26 +204,20 @@ export function HomePage() {
                           </div>
                         )
                       }
-                      if (c.icon === "leaf") {
-                        return (
-                          <div
-                            key="leaf"
-                            title={title}
-                            className="flex h-9 w-9 cursor-default items-center justify-center rounded-lg border border-emerald-700/20 bg-white/95 shadow-sm sm:h-10 sm:w-10"
-                          >
-                            <Leaf className="size-[1.125rem] text-emerald-800 sm:size-5" strokeWidth={2.25} aria-hidden />
-                          </div>
-                        )
-                      }
-                      const { label } = c as { label: string }
                       return (
-                        <span
-                          key={label}
+                        <div
+                          key={c.key}
                           title={title}
-                          className="inline-flex h-9 min-h-9 cursor-default items-center justify-center rounded-lg border border-[#0a5aa8]/22 bg-white/95 px-2.5 text-[10px] font-bold uppercase leading-none tracking-wide text-[#052e4a] shadow-sm sm:h-10 sm:min-h-10 sm:px-3 sm:text-[11px]"
+                          className="relative h-9 w-9 shrink-0 cursor-default overflow-hidden rounded-lg border border-[#0a5aa8]/22 bg-white/95 shadow-sm sm:h-10 sm:w-10"
                         >
-                          {label}
-                        </span>
+                          <Image
+                            src={c.src}
+                            alt={c.alt}
+                            fill
+                            className="object-contain p-1 sm:p-1.5"
+                            sizes="40px"
+                          />
+                        </div>
                       )
                     })}
                   </div>

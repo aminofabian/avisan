@@ -48,9 +48,7 @@ export const siteConfig = {
     { display: "9856083935", href: "tel:+9779856083935" },
   ],
   contactAddress: "BP Marga, Chauthe, Pokhara-14",
-  websiteUrl: "https://avisantraders.com",
-  websiteDisplay: "avisantraders.com",
-  sameAs: ["https://avisantraders.com"] as string[],
+  sameAs: [] as string[],
   keywords: [
     "UPVC profiles Nepal",
     "UPVC windows Pokhara",

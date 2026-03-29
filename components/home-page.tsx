@@ -1,4 +1,4 @@
-import { Download, Globe, Leaf, Mail, MapPin, MessageCircle, Phone, Recycle, ShieldCheck } from "lucide-react"
+import { Download, Leaf, Mail, MapPin, Phone, Recycle, ShieldCheck } from "lucide-react"
 import Image from "next/image"
 import { Fragment } from "react"
 
@@ -209,10 +209,10 @@ export function HomePage() {
                   <div className="mt-3 flex flex-col gap-1.5 border-t border-[#0c1a2a]/[0.06] pt-3 sm:mt-4 sm:gap-2 sm:pt-4">
                     <div className="grid grid-cols-2 gap-1.5 max-[380px]:gap-1 sm:gap-2.5">
                       <div className="min-w-0 rounded-lg border border-[#c41e3a]/12 bg-[#fdf6f7]/90 px-1.5 py-1.5 text-center text-[9px] font-medium leading-tight tracking-tight text-[#5c2832] max-[380px]:px-1 sm:rounded-xl sm:px-2 sm:py-2.5 sm:text-xs sm:leading-snug md:text-sm">
-                        Standard bar length · 5.9&nbsp;m
+                        Bar length · 5.9&nbsp;m
                       </div>
                       <div className="min-w-0 rounded-lg border border-[#0a5aa8]/12 bg-[#f3f8fc]/90 px-1.5 py-1.5 text-center text-[9px] font-medium leading-tight tracking-tight text-[#0f4a73] max-[380px]:px-1 sm:rounded-xl sm:px-2 sm:py-2.5 sm:text-xs sm:leading-snug md:text-sm">
-                        Profile wall · 2.2&nbsp;mm
+                        Wall thickness · 2.2&nbsp;mm
                       </div>
                     </div>
                   </div>
@@ -225,30 +225,30 @@ export function HomePage() {
         {/* Contact — same sky/photo as hero (fixed bg); frosted dashed card for legibility */}
         <section
           id="contact"
-          className="mx-auto w-full max-w-[min(100%,720px)] shrink-0 pt-5 max-[380px]:pt-4 md:mt-auto sm:pt-6"
+          className="mx-auto w-full max-w-[min(100%,720px)] shrink-0 pt-4 max-[380px]:pt-3 md:mt-auto sm:pt-5"
           aria-label="Contact information"
         >
-          <div className="flex flex-col items-stretch gap-3 rounded-[1.25rem] border border-dashed border-black/80 bg-white/[0.18] px-5 py-4 shadow-[0_10px_32px_-14px_rgba(8,45,85,0.22)] ring-1 ring-white/35 backdrop-blur-2xl max-[380px]:px-4 max-[380px]:py-3.5 sm:flex-row sm:items-start sm:justify-between sm:gap-6 sm:rounded-[1.75rem] sm:px-6 sm:py-5">
+          <div className="flex flex-col items-stretch gap-2 rounded-[1.1rem] border border-dashed border-black/80 bg-white/[0.18] px-4 py-3 shadow-[0_10px_32px_-14px_rgba(8,45,85,0.22)] ring-1 ring-white/35 backdrop-blur-2xl max-[380px]:px-3.5 max-[380px]:py-2.5 sm:flex-row sm:items-start sm:justify-between sm:gap-4 sm:rounded-[1.5rem] sm:px-5 sm:py-3.5">
             <div className="flex w-full shrink-0 justify-center sm:w-auto sm:justify-start">
               <Image
                 src={siteConfig.logoPath}
                 alt={`${siteConfig.name} — Window & Door Profiles`}
                 width={siteConfig.logoWidth}
                 height={siteConfig.logoHeight}
-                className="mx-auto h-auto w-[min(100%,152px)] max-w-[152px] object-contain object-center sm:mx-0 sm:w-[164px] sm:object-left sm:max-w-[164px] max-[380px]:w-[130px] max-[380px]:max-w-[130px]"
-                sizes="(max-width: 380px) 130px, (max-width: 639px) 152px, 164px"
+                className="mx-auto h-auto w-[min(100%,140px)] max-w-[140px] object-contain object-center sm:mx-0 sm:w-[150px] sm:object-left sm:max-w-[150px] max-[380px]:w-[118px] max-[380px]:max-w-[118px]"
+                sizes="(max-width: 380px) 118px, (max-width: 639px) 140px, 150px"
               />
             </div>
 
-            <ul className="grid w-full min-w-0 flex-1 grid-cols-1 gap-y-3">
-              <li className="grid grid-cols-[auto_1fr] items-center gap-x-3">
+            <ul className="grid w-full min-w-0 flex-1 grid-cols-1 gap-y-2">
+              <li className="grid grid-cols-[auto_1fr] items-center gap-x-2">
                 <span
                   className="flex size-8 shrink-0 touch-manipulation items-center justify-center rounded-md bg-black sm:size-9"
                   aria-hidden
                 >
                   <Phone className="size-3.5 text-white sm:size-4" strokeWidth={2.35} />
                 </span>
-                <p className="flex min-w-0 flex-row flex-wrap items-center gap-x-2 gap-y-1 text-left text-xs font-bold leading-5 text-black sm:text-[13px] sm:leading-5">
+                <p className="flex min-w-0 flex-row flex-wrap items-center gap-x-1.5 gap-y-0.5 text-left text-xs font-bold leading-snug text-black sm:text-[13px] sm:leading-snug">
                   {siteConfig.contactPhones.map((entry, i) => (
                     <Fragment key={entry.href}>
                       {i > 0 && (
@@ -266,11 +266,11 @@ export function HomePage() {
                   ))}
                 </p>
               </li>
-              <li className="grid grid-cols-[auto_1fr] items-center gap-x-3">
+              <li className="grid grid-cols-[auto_1fr] items-center gap-x-2">
                 <span className="flex size-8 shrink-0 items-center justify-center rounded-md bg-black sm:size-9" aria-hidden>
                   <Mail className="size-3.5 text-white sm:size-4" strokeWidth={2.35} />
                 </span>
-                <p className="min-w-0 text-xs font-bold leading-5 sm:text-[13px] sm:leading-5">
+                <p className="min-w-0 text-xs font-bold leading-snug sm:text-[13px] sm:leading-snug">
                   <a
                     href={`mailto:${siteConfig.email}`}
                     className="touch-manipulation break-all text-black underline-offset-2 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black sm:break-normal"
@@ -279,26 +279,11 @@ export function HomePage() {
                   </a>
                 </p>
               </li>
-              <li className="grid grid-cols-[auto_1fr] items-center gap-x-3">
+              <li className="grid grid-cols-[auto_1fr] items-center gap-x-2">
                 <span className="flex size-8 shrink-0 items-center justify-center rounded-md bg-black sm:size-9" aria-hidden>
                   <MapPin className="size-3.5 text-white sm:size-4" strokeWidth={2.35} />
                 </span>
-                <p className="min-w-0 text-pretty text-xs font-bold leading-5 text-black sm:text-[13px] sm:leading-5">{siteConfig.contactAddress}</p>
-              </li>
-              <li className="grid grid-cols-[auto_1fr] items-center gap-x-3">
-                <span className="flex size-8 shrink-0 items-center justify-center rounded-md bg-black sm:size-9" aria-hidden>
-                  <Globe className="size-3.5 text-white sm:size-4" strokeWidth={2.35} />
-                </span>
-                <p className="min-w-0 text-xs font-bold leading-5 sm:text-[13px] sm:leading-5">
-                  <a
-                    href={siteConfig.websiteUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="touch-manipulation break-all text-black underline-offset-2 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black sm:break-normal"
-                  >
-                    {siteConfig.websiteDisplay}
-                  </a>
-                </p>
+                <p className="min-w-0 text-pretty text-xs font-bold leading-snug text-black sm:text-[13px] sm:leading-snug">{siteConfig.contactAddress}</p>
               </li>
             </ul>
           </div>
@@ -327,7 +312,17 @@ export function HomePage() {
           className="absolute inset-0 rounded-full bg-[#25d366]"
           style={{ animation: "cs-pulse-ring 2s ease-out infinite" }}
         />
-        <MessageCircle className="relative size-6" />
+        <svg
+          className="relative size-7 shrink-0 max-[380px]:size-6"
+          viewBox="0 0 24 24"
+          aria-hidden
+          focusable="false"
+        >
+          <path
+            fill="currentColor"
+            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+          />
+        </svg>
       </a>
     </main>
   )

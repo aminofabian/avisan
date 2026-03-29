@@ -10,8 +10,8 @@ const profileHeroSrc = "/upvc-profile-500x500-removebg-preview.png"
 const heroVillaSrc =
   "/luxury-villa-saint-jean-cap-ferrat-architect-vielliard-francheteau-1-1536x867.avif"
 const windowCutoutSrc = "/upvc-sliding-windows-03b-removebg-preview.png"
-/** Product catalog — `public/UPVC.pdf` */
-const catalogPdfHref = "/UPVC.pdf"
+/** Product catalog — `public/UPVC (2).pdf` */
+const catalogPdfHref = "/UPVC%20(2).pdf"
 
 /** Stronger edge feather + lighter shadow so cutouts sit quietly on the façade */
 const floatBlend =

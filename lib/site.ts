@@ -16,14 +16,13 @@ export const siteConfig = {
   name: "Avisan",
   legalName: "Avisan",
   /**
-   * Header + favicon / OG mark — `public/avisanlogo.png` (461×311). Bump `logoCacheKey` when the file changes.
+   * Brand mark: `public/avisanlogo.png` — served as-is (transparent RGBA). `logoWidth` / `logoHeight` match the file for aspect ratio & metadata only.
    */
   logoPath: "/avisanlogo.png",
-  logoWidth: 461,
-  logoHeight: 311,
-  /** Bump when replacing the logo file so favicon / OG / JSON-LD caches refresh. */
-  /** Change this string whenever you replace header/contact PNGs (cache bust). */
-  logoCacheKey: "15",
+  logoWidth: 321,
+  logoHeight: 139,
+  /** Bump when replacing the PNG so browsers/CDNs refetch (`?v=` on the URL). */
+  logoCacheKey: "19",
   tagline: "German-engineered profiles. Full window supply.",
   titleTemplate: "%s | Avisan",
   /** Primary meta description (≈155 chars for SERP) */
@@ -48,10 +47,10 @@ export const siteConfig = {
     { display: "9856083935", href: "tel:+9779856083935" },
   ],
   contactAddress: "BP Marga, Chauthe, Pokhara-14",
-  /** Contact card — full lockup with tagline (`public/avisanlogo.png`). */
+  /** Contact card — same file as header (`public/avisanlogo.png`). */
   contactLogoPath: "/avisanlogo.png",
-  contactLogoWidth: 461,
-  contactLogoHeight: 311,
+  contactLogoWidth: 321,
+  contactLogoHeight: 139,
   sameAs: [] as string[],
   keywords: [
     "UPVC profiles Nepal",

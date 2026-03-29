@@ -67,9 +67,9 @@ export function HomePage() {
       {/* md+: first screen fills viewport; mobile: natural document height */}
       <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col px-[max(1rem,env(safe-area-inset-left,0px))] pr-[max(1rem,env(safe-area-inset-right,0px))] pb-6 pt-[max(1.25rem,env(safe-area-inset-top,0px))] max-[380px]:px-3 sm:px-6 sm:pb-7 sm:pt-9 md:min-h-dvh md:px-10 md:pb-6 md:pt-10">
         <header className="flex shrink-0 flex-col items-center gap-4 text-center sm:flex-row sm:items-start sm:gap-8 sm:text-left md:gap-10">
-          {/* Full intrinsic dimensions + whole-pixel layout + high-quality downscale (see globals .cs-brand-mark) */}
-          <div className="cs-brand-mark-wrap shrink-0 w-[min(100%,132px)] sm:w-[min(100%,232px)] md:w-[248px]">
-            {/* eslint-disable-next-line @next/next/no-img-element -- full-res PNG with alpha; next/image can flatten transparency */}
+          {/* `avisanlogo.png` as-is from /public — no filters, no background; only max-width for small screens */}
+          <div className="flex shrink-0 justify-center sm:block sm:justify-start">
+            {/* eslint-disable-next-line @next/next/no-img-element -- PNG alpha; next/image can flatten transparency */}
             <img
               key={`header-logo-${siteConfig.logoCacheKey}`}
               src={getLogoImageSrc()}
@@ -78,7 +78,7 @@ export function HomePage() {
               height={siteConfig.logoHeight}
               decoding="sync"
               fetchPriority="high"
-              className="cs-brand-mark mx-auto block h-auto w-[min(100%,120px)] max-w-full object-contain object-center sm:mx-0 sm:w-full max-[380px]:w-[112px]"
+              className="mx-auto block h-auto w-auto max-w-[min(100%,7.5rem)] sm:mx-0 sm:max-w-[min(100%,10rem)] md:max-w-[min(100%,11.5rem)]"
             />
           </div>
 
@@ -230,7 +230,7 @@ export function HomePage() {
         >
           <div className="flex flex-col items-stretch gap-2 rounded-[1.1rem] border border-dashed border-[#0c1a2a]/22 bg-gradient-to-br from-white/55 via-sky-50/40 to-sky-100/35 px-4 py-3 shadow-[0_10px_32px_-14px_rgba(8,45,85,0.22),inset_0_1px_0_rgba(255,255,255,0.65)] ring-1 ring-sky-200/50 backdrop-blur-2xl max-[380px]:px-3.5 max-[380px]:py-2.5 sm:flex-row sm:items-start sm:justify-between sm:gap-4 sm:rounded-[1.5rem] sm:px-5 sm:py-3.5">
             <div className="flex w-full shrink-0 justify-center sm:w-auto sm:justify-start">
-              <div className="cs-brand-mark-wrap shrink-0 w-[min(100%,152px)] max-[380px]:w-[128px] sm:w-[176px]">
+              <div className="flex shrink-0 justify-center sm:block sm:justify-start">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   key={`contact-logo-${siteConfig.logoCacheKey}`}
@@ -240,7 +240,7 @@ export function HomePage() {
                   height={siteConfig.contactLogoHeight}
                   loading="eager"
                   decoding="sync"
-                  className="cs-brand-mark mx-auto block h-auto w-full max-w-full object-contain object-center sm:mx-0 sm:object-left"
+                  className="mx-auto block h-auto w-auto max-w-[min(100%,7rem)] sm:mx-0 sm:max-w-[min(100%,8.5rem)]"
                 />
               </div>
             </div>

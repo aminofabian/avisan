@@ -23,7 +23,7 @@ export const siteConfig = {
   logoHeight: 1024,
   /** Bump when replacing the logo file so favicon / OG / JSON-LD caches refresh. */
   /** Change this string whenever you replace header/contact PNGs (cache bust). */
-  logoCacheKey: "13",
+  logoCacheKey: "14",
   tagline: "German-engineered profiles. Full window supply.",
   titleTemplate: "%s | Avisan",
   /** Primary meta description (≈155 chars for SERP) */

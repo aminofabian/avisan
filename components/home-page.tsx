@@ -2,7 +2,7 @@ import { Download, Leaf, Mail, MapPin, Phone, Recycle, ShieldCheck } from "lucid
 import Image from "next/image"
 import { Fragment } from "react"
 
-import { siteConfig } from "@/lib/site"
+import { getContactLogoSrc, getLogoImageSrc, siteConfig } from "@/lib/site"
 
 const waDigits = siteConfig.whatsappDigits
 
@@ -28,9 +28,9 @@ const certDiscs = [
   { icon: "leaf" as const, title: "Eco-friendly" },
 ]
 
-/** Shared label style for card section titles */
+/** Specs card section titles — dark enough for glass / photo behind */
 const sectionEyebrow =
-  "text-[10px] font-bold uppercase tracking-[0.22em] text-[#5a6b78] sm:text-[11px] sm:tracking-[0.24em]"
+  "text-[11px] font-bold uppercase tracking-[0.12em] text-[#1a3040] sm:text-xs sm:tracking-[0.14em]"
 
 export function HomePage() {
   return (
@@ -46,11 +46,11 @@ export function HomePage() {
           sizes="100vw"
         />
         <div
-          className="absolute inset-0 bg-gradient-to-b from-white/35 via-sky-50/30 to-[#d8e8f5]/65"
+          className="absolute inset-0 bg-gradient-to-b from-sky-200/15 via-sky-100/20 to-[#c8dce8]/55"
           aria-hidden
         />
         <div
-          className="absolute inset-0 bg-[radial-gradient(ellipse_100%_80%_at_50%_0%,rgba(255,255,255,0.5)_0%,transparent_50%)]"
+          className="absolute inset-0 bg-[radial-gradient(ellipse_100%_80%_at_50%_0%,rgba(186,230,253,0.22)_0%,transparent_52%)]"
           aria-hidden
         />
         <div
@@ -61,21 +61,22 @@ export function HomePage() {
 
       {/* md+: first screen fills viewport; mobile: natural document height */}
       <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col px-[max(1rem,env(safe-area-inset-left,0px))] pr-[max(1rem,env(safe-area-inset-right,0px))] pb-6 pt-[max(1.25rem,env(safe-area-inset-top,0px))] max-[380px]:px-3 sm:px-6 sm:pb-7 sm:pt-9 md:min-h-dvh md:px-10 md:pb-6 md:pt-10">
-        <header className="cs-fade-in flex shrink-0 flex-col items-center gap-4 text-center sm:flex-row sm:items-start sm:gap-8 sm:text-left md:gap-10">
+        <header className="flex shrink-0 flex-col items-center gap-4 text-center sm:flex-row sm:items-start sm:gap-8 sm:text-left md:gap-10">
+          {/* No entrance animation on logo — parent transform hurts sharpness */}
           <div className="shrink-0 w-[min(100%,8.5rem)] sm:w-[min(100%,180px)] md:w-[200px]">
-            <Image
-              src={siteConfig.logoPath}
+            {/* eslint-disable-next-line @next/next/no-img-element -- full-res PNG with alpha; next/image can flatten transparency */}
+            <img
+              src={getLogoImageSrc()}
               alt={`${siteConfig.name} — UPVC profiles, fabrication materials & window hardware`}
               width={siteConfig.logoWidth}
               height={siteConfig.logoHeight}
-              quality={100}
-              priority
-              className="mx-auto h-auto w-[min(100%,7.25rem)] object-contain drop-shadow-[0_2px_16px_rgba(10,60,100,0.1)] sm:mx-0 sm:w-full max-[380px]:w-[6.5rem]"
-              sizes="(max-width: 380px) 104px, (max-width: 639px) 116px, 200px"
+              decoding="sync"
+              fetchPriority="high"
+              className="mx-auto block h-auto w-[min(100%,7.25rem)] max-w-full object-contain sm:mx-0 sm:w-full max-[380px]:w-[6.5rem]"
             />
           </div>
 
-          <div className="flex min-w-0 w-full flex-1 flex-col items-center sm:items-start">
+          <div className="cs-fade-in flex min-w-0 w-full flex-1 flex-col items-center sm:items-start">
             <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#0a5aa8]/85 max-[380px]:text-[9px] sm:text-[11px] sm:tracking-[0.24em]">
               Profiles · fabrication · hardware
             </p>
@@ -92,7 +93,7 @@ export function HomePage() {
                 download="Avisan-UPVC-catalog.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="cs-shop-button inline-flex w-full min-h-11 shrink-0 touch-manipulation items-center justify-center gap-2 rounded-xl border-2 border-[#0a5aa8]/28 bg-white/80 px-5 py-3 text-sm font-semibold text-[#084a8f] shadow-[0_6px_22px_-6px_rgba(10,90,168,0.18)] backdrop-blur-md transition-[border-color,background-color,transform,box-shadow] active:scale-[0.99] hover:border-[#0a5aa8]/45 hover:bg-white hover:shadow-[0_10px_28px_-8px_rgba(10,90,168,0.2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1477b3]/50 sm:min-h-10 sm:w-auto sm:py-2.5"
+                className="cs-shop-button inline-flex w-full min-h-11 shrink-0 touch-manipulation items-center justify-center gap-2 rounded-xl border-2 border-[#0a5aa8]/32 bg-sky-100/55 px-5 py-3 text-sm font-semibold text-[#084a8f] shadow-[0_6px_22px_-6px_rgba(10,90,168,0.18)] backdrop-blur-md transition-[border-color,background-color,transform,box-shadow] active:scale-[0.99] hover:border-[#0a5aa8]/45 hover:bg-sky-50/75 hover:shadow-[0_10px_28px_-8px_rgba(10,90,168,0.2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1477b3]/50 sm:min-h-10 sm:w-auto sm:py-2.5"
               >
                 <Download className="size-4 shrink-0 opacity-90" aria-hidden />
                 Profile catalog (PDF)
@@ -104,14 +105,14 @@ export function HomePage() {
           </div>
         </header>
 
-        <article className="relative mx-auto mt-4 flex w-full max-w-[980px] flex-col overflow-hidden rounded-[20px] border border-white/80 bg-white/20 shadow-[0_20px_56px_-22px_rgba(8,45,85,0.38),0_0_0_1px_rgba(255,255,255,0.5)_inset] backdrop-blur-md ring-1 ring-white/25 max-md:flex-none sm:mt-6 sm:rounded-[24px] md:mt-5 md:flex-1 md:min-h-0 md:rounded-[28px]">
+        <article className="relative mx-auto mt-4 flex w-full max-w-[980px] flex-col overflow-hidden rounded-[20px] border border-sky-200/45 bg-sky-100/25 shadow-[0_20px_56px_-22px_rgba(8,45,85,0.38),inset_0_1px_0_rgba(255,255,255,0.25)] backdrop-blur-md ring-1 ring-sky-200/30 max-md:flex-none sm:mt-6 sm:rounded-[24px] md:mt-5 md:flex-1 md:min-h-0 md:rounded-[28px]">
           <p className="sr-only">
             Hero: premium residence glazing with UPVC profile cross-section and sliding window. Avisan supplies German-engineered UPVC profiles plus fabrication materials and hardware for window systems.
           </p>
 
           <div className="relative flex min-h-0 flex-1 flex-col overflow-hidden rounded-[14px] p-1.5 sm:rounded-[22px] sm:p-2.5 max-md:flex-none md:flex-1">
             {/* Mobile: bounded height; md+: grows in flex column */}
-            <div className="relative h-[min(42svh,280px)] min-h-[200px] w-full shrink-0 overflow-hidden rounded-[12px] border border-white/90 shadow-[inset_0_0_0_1px_rgba(0,0,0,0.04),0_16px_44px_-16px_rgba(0,40,80,0.26)] max-[380px]:h-[min(38svh,240px)] max-[380px]:min-h-[180px] sm:h-[min(44svh,320px)] sm:min-h-[220px] sm:rounded-[16px] md:h-auto md:min-h-[260px] md:flex-1 md:rounded-[18px]">
+            <div className="relative h-[min(42svh,280px)] min-h-[200px] w-full shrink-0 overflow-hidden rounded-[12px] border border-sky-300/50 shadow-[inset_0_0_0_1px_rgba(0,0,0,0.04),0_16px_44px_-16px_rgba(0,40,80,0.26)] max-[380px]:h-[min(38svh,240px)] max-[380px]:min-h-[180px] sm:h-[min(44svh,320px)] sm:min-h-[220px] sm:rounded-[16px] md:h-auto md:min-h-[260px] md:flex-1 md:rounded-[18px]">
               <Image
                 src={heroVillaSrc}
                 alt="Modern home with large glass facades — the kind of project built with quality profiles and window systems"
@@ -126,9 +127,9 @@ export function HomePage() {
               />
 
               <div className="absolute right-2 top-2 z-[15] max-w-[min(100%,calc(100%-1rem))] sm:right-4 sm:top-4">
-                <div className="flex max-w-full items-center gap-1.5 rounded-xl border border-emerald-800/12 bg-white/92 px-2 py-1.5 shadow-[0_6px_22px_-10px_rgba(5,80,50,0.22)] backdrop-blur-md max-[380px]:gap-1 max-[380px]:px-1.5 sm:gap-2.5 sm:rounded-3xl sm:px-3.5 sm:py-2.5">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-emerald-500 to-emerald-700 shadow-sm sm:h-10 sm:w-10 sm:rounded-2xl">
-                    <ShieldCheck className="size-4 text-white sm:size-5" strokeWidth={2.4} aria-hidden />
+                <div className="flex max-w-full items-center gap-1.5 rounded-xl border border-emerald-800/18 bg-emerald-50/45 px-2 py-1.5 shadow-[0_6px_22px_-10px_rgba(5,80,50,0.22)] backdrop-blur-md max-[380px]:gap-1 max-[380px]:px-1.5 sm:gap-2.5 sm:rounded-3xl sm:px-3.5 sm:py-2.5">
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-emerald-600/25 bg-gradient-to-br from-emerald-100/95 to-emerald-200/90 shadow-sm sm:h-10 sm:w-10 sm:rounded-2xl">
+                    <ShieldCheck className="size-4 text-emerald-900 sm:size-5" strokeWidth={2.4} aria-hidden />
                   </div>
                   <p className="text-[10px] font-black uppercase leading-tight tracking-wide text-[#0c1a2a] max-[380px]:max-w-[9rem] max-[380px]:text-[9px] sm:text-xs sm:max-w-none md:text-sm">
                     20-year warranty
@@ -163,12 +164,12 @@ export function HomePage() {
 
           {/* Specs — compact on small screens; certifications wrap ~4+3 via max-width */}
           <div className="relative z-[3] mx-2 -mt-8 mb-2 flex shrink-0 justify-center max-[380px]:mx-1.5 max-[380px]:-mt-7 sm:mx-5 sm:-mt-12 sm:mb-3 md:-mt-14">
-            <div className="flex w-full max-w-4xl flex-col rounded-xl border border-white/75 bg-white/92 p-2 shadow-[0_18px_48px_-18px_rgba(15,55,95,0.3),inset_0_1px_0_rgba(255,255,255,1)] backdrop-blur-xl max-[380px]:px-2 max-[380px]:py-1.5 sm:rounded-2xl sm:p-4 lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:items-start lg:gap-x-8 lg:p-5">
+            <div className="flex w-full max-w-4xl flex-col rounded-xl border border-sky-300/55 bg-[#f2f7fb]/90 p-2 shadow-[0_18px_48px_-18px_rgba(15,55,95,0.22)] backdrop-blur-xl max-[380px]:px-2 max-[380px]:py-1.5 sm:rounded-2xl sm:p-4 lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:items-start lg:gap-x-8 lg:p-5">
               <div>
-                  <p className={`text-center max-md:tracking-[0.16em] lg:text-left ${sectionEyebrow}`}>Laminate finishes</p>
+                  <p className={`text-center lg:text-left ${sectionEyebrow}`}>Laminate finishes</p>
                   <div className="mt-2 flex justify-center gap-3 sm:mt-3 sm:gap-6 lg:justify-start">
                     <div className="text-center transition-transform duration-300 hover:scale-[1.02] lg:text-left">
-                      <div className="relative mx-auto h-10 w-[3.35rem] overflow-hidden rounded-lg border border-black/10 shadow-[0_4px_12px_-4px_rgba(0,0,0,0.16)] ring-1 ring-white sm:h-12 sm:w-16 sm:rounded-xl sm:ring-2 lg:mx-0">
+                      <div className="relative mx-auto h-10 w-[3.35rem] overflow-hidden rounded-lg border border-black/10 shadow-[0_4px_12px_-4px_rgba(0,0,0,0.16)] ring-1 ring-sky-200/60 sm:h-12 sm:w-16 sm:rounded-xl sm:ring-2 lg:mx-0">
                         <Image
                           src="/Species-Oak_Stain-GoldenOak.jpg"
                           alt="Golden Oak wood grain laminate"
@@ -180,30 +181,50 @@ export function HomePage() {
                       <span className="mt-1 block text-[10px] font-bold text-[#1a1a1a] sm:mt-2 sm:text-xs">Golden Oak</span>
                     </div>
                     <div className="text-center transition-transform duration-300 hover:scale-[1.02] lg:text-left">
-                      <div className="mx-auto h-10 w-[3.35rem] rounded-lg border-2 border-[#d8e4ed] bg-gradient-to-br from-white to-[#eef5f9] shadow-[inset_0_2px_6px_rgba(255,255,255,0.9)] ring-1 ring-white sm:h-12 sm:w-16 sm:rounded-xl sm:ring-2 lg:mx-0" />
+                      <div className="mx-auto h-10 w-[3.35rem] rounded-lg border-2 border-[#c5d8e8] bg-gradient-to-br from-[#eef6fb] to-[#dceaf5] shadow-[inset_0_2px_6px_rgba(255,255,255,0.5)] ring-1 ring-sky-200/50 sm:h-12 sm:w-16 sm:rounded-xl sm:ring-2 lg:mx-0" />
                       <span className="mt-1 block text-[10px] font-bold text-[#1a1a1a] sm:mt-2 sm:text-xs">White</span>
                     </div>
                   </div>
                 </div>
 
                 <div className="mt-3 border-t border-[#0c1a2a]/[0.06] pt-3 sm:mt-4 sm:pt-4 lg:mt-0 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
-                  <p className={`mb-1.5 text-center max-md:tracking-[0.16em] lg:text-left sm:mb-2 ${sectionEyebrow}`}>Certifications</p>
-                  <div className="mx-auto flex max-w-[10.25rem] flex-wrap justify-center gap-1 gap-y-1 sm:mx-0 sm:max-w-none sm:gap-1.5 lg:justify-start">
-                    {certDiscs.map((c) => (
-                      <div
-                        key={c.label ?? c.icon}
-                        title={"title" in c ? c.title : undefined}
-                        className="flex h-8 w-8 cursor-default items-center justify-center rounded-full bg-gradient-to-br from-[#0a5aa8] to-[#073d73] text-[7px] font-bold uppercase leading-none text-white shadow-[0_2px_6px_rgba(10,90,168,0.22)] transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 sm:h-10 sm:w-10 sm:text-[9px] sm:shadow-[0_2px_8px_rgba(10,90,168,0.25)]"
-                      >
-                        {c.icon === "recycle" ? (
-                          <Recycle className="size-3.5 text-white sm:size-4" strokeWidth={2.2} aria-hidden />
-                        ) : c.icon === "leaf" ? (
-                          <Leaf className="size-3.5 text-white sm:size-4" strokeWidth={2.2} aria-hidden />
-                        ) : (
-                          (c as { label: string }).label
-                        )}
-                      </div>
-                    ))}
+                  <p className={`mb-2 text-center lg:text-left sm:mb-2.5 ${sectionEyebrow}`}>Certifications</p>
+                  <div className="flex flex-wrap justify-center gap-2 sm:justify-start">
+                    {certDiscs.map((c) => {
+                      const title = "title" in c ? c.title : undefined
+                      if (c.icon === "recycle") {
+                        return (
+                          <div
+                            key="recycle"
+                            title={title}
+                            className="flex h-9 w-9 cursor-default items-center justify-center rounded-lg border border-[#0a5aa8]/22 bg-white/95 shadow-sm sm:h-10 sm:w-10"
+                          >
+                            <Recycle className="size-[1.125rem] text-[#0a5aa8] sm:size-5" strokeWidth={2.25} aria-hidden />
+                          </div>
+                        )
+                      }
+                      if (c.icon === "leaf") {
+                        return (
+                          <div
+                            key="leaf"
+                            title={title}
+                            className="flex h-9 w-9 cursor-default items-center justify-center rounded-lg border border-emerald-700/20 bg-white/95 shadow-sm sm:h-10 sm:w-10"
+                          >
+                            <Leaf className="size-[1.125rem] text-emerald-800 sm:size-5" strokeWidth={2.25} aria-hidden />
+                          </div>
+                        )
+                      }
+                      const { label } = c as { label: string }
+                      return (
+                        <span
+                          key={label}
+                          title={title}
+                          className="inline-flex h-9 min-h-9 cursor-default items-center justify-center rounded-lg border border-[#0a5aa8]/22 bg-white/95 px-2.5 text-[10px] font-bold uppercase leading-none tracking-wide text-[#052e4a] shadow-sm sm:h-10 sm:min-h-10 sm:px-3 sm:text-[11px]"
+                        >
+                          {label}
+                        </span>
+                      )
+                    })}
                   </div>
 
                   <div className="mt-3 flex flex-col gap-1.5 border-t border-[#0c1a2a]/[0.06] pt-3 sm:mt-4 sm:gap-2 sm:pt-4">
@@ -228,25 +249,27 @@ export function HomePage() {
           className="mx-auto w-full max-w-[min(100%,720px)] shrink-0 pt-4 max-[380px]:pt-3 md:mt-auto sm:pt-5"
           aria-label="Contact information"
         >
-          <div className="flex flex-col items-stretch gap-2 rounded-[1.1rem] border border-dashed border-black/80 bg-white/[0.18] px-4 py-3 shadow-[0_10px_32px_-14px_rgba(8,45,85,0.22)] ring-1 ring-white/35 backdrop-blur-2xl max-[380px]:px-3.5 max-[380px]:py-2.5 sm:flex-row sm:items-start sm:justify-between sm:gap-4 sm:rounded-[1.5rem] sm:px-5 sm:py-3.5">
+          <div className="flex flex-col items-stretch gap-2 rounded-[1.1rem] border border-dashed border-black/80 bg-sky-100/30 px-4 py-3 shadow-[0_10px_32px_-14px_rgba(8,45,85,0.22)] ring-1 ring-sky-200/40 backdrop-blur-2xl max-[380px]:px-3.5 max-[380px]:py-2.5 sm:flex-row sm:items-start sm:justify-between sm:gap-4 sm:rounded-[1.5rem] sm:px-5 sm:py-3.5">
             <div className="flex w-full shrink-0 justify-center sm:w-auto sm:justify-start">
-              <Image
-                src={siteConfig.logoPath}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={getContactLogoSrc()}
                 alt={`${siteConfig.name} — Window & Door Profiles`}
-                width={siteConfig.logoWidth}
-                height={siteConfig.logoHeight}
-                className="mx-auto h-auto w-[min(100%,140px)] max-w-[140px] object-contain object-center sm:mx-0 sm:w-[150px] sm:object-left sm:max-w-[150px] max-[380px]:w-[118px] max-[380px]:max-w-[118px]"
-                sizes="(max-width: 380px) 118px, (max-width: 639px) 140px, 150px"
+                width={siteConfig.contactLogoWidth}
+                height={siteConfig.contactLogoHeight}
+                loading="eager"
+                decoding="sync"
+                className="mx-auto block h-auto w-[min(100%,140px)] max-w-[140px] object-contain object-center sm:mx-0 sm:w-[150px] sm:object-left sm:max-w-[150px] max-[380px]:w-[118px] max-[380px]:max-w-[118px]"
               />
             </div>
 
             <ul className="grid w-full min-w-0 flex-1 grid-cols-1 gap-y-2">
               <li className="grid grid-cols-[auto_1fr] items-center gap-x-2">
                 <span
-                  className="flex size-8 shrink-0 touch-manipulation items-center justify-center rounded-md bg-black sm:size-9"
+                  className="flex size-8 shrink-0 touch-manipulation items-center justify-center rounded-md border border-sky-300/70 bg-sky-50/95 sm:size-9"
                   aria-hidden
                 >
-                  <Phone className="size-3.5 text-white sm:size-4" strokeWidth={2.35} />
+                  <Phone className="size-3.5 text-[#084a8f] sm:size-4" strokeWidth={2.35} />
                 </span>
                 <p className="flex min-w-0 flex-row flex-wrap items-center gap-x-1.5 gap-y-0.5 text-left text-xs font-bold leading-snug text-black sm:text-[13px] sm:leading-snug">
                   {siteConfig.contactPhones.map((entry, i) => (
@@ -267,8 +290,8 @@ export function HomePage() {
                 </p>
               </li>
               <li className="grid grid-cols-[auto_1fr] items-center gap-x-2">
-                <span className="flex size-8 shrink-0 items-center justify-center rounded-md bg-black sm:size-9" aria-hidden>
-                  <Mail className="size-3.5 text-white sm:size-4" strokeWidth={2.35} />
+                <span className="flex size-8 shrink-0 items-center justify-center rounded-md border border-sky-300/70 bg-sky-50/95 sm:size-9" aria-hidden>
+                  <Mail className="size-3.5 text-[#084a8f] sm:size-4" strokeWidth={2.35} />
                 </span>
                 <p className="min-w-0 text-xs font-bold leading-snug sm:text-[13px] sm:leading-snug">
                   <a
@@ -280,8 +303,8 @@ export function HomePage() {
                 </p>
               </li>
               <li className="grid grid-cols-[auto_1fr] items-center gap-x-2">
-                <span className="flex size-8 shrink-0 items-center justify-center rounded-md bg-black sm:size-9" aria-hidden>
-                  <MapPin className="size-3.5 text-white sm:size-4" strokeWidth={2.35} />
+                <span className="flex size-8 shrink-0 items-center justify-center rounded-md border border-sky-300/70 bg-sky-50/95 sm:size-9" aria-hidden>
+                  <MapPin className="size-3.5 text-[#084a8f] sm:size-4" strokeWidth={2.35} />
                 </span>
                 <p className="min-w-0 text-pretty text-xs font-bold leading-snug text-black sm:text-[13px] sm:leading-snug">{siteConfig.contactAddress}</p>
               </li>
@@ -290,7 +313,7 @@ export function HomePage() {
         </section>
       </div>
 
-      <footer className="relative z-10 mx-auto w-full max-w-6xl border-t border-white/45 px-[max(1rem,env(safe-area-inset-left,0px))] py-8 pr-[max(1rem,env(safe-area-inset-right,0px))] pb-[max(2rem,env(safe-area-inset-bottom,0px))] text-center text-[13px] leading-relaxed text-[#1a3040] max-[380px]:text-xs sm:px-6 sm:py-12 sm:text-sm md:px-10">
+      <footer className="relative z-10 mx-auto w-full max-w-6xl border-t border-sky-200/50 px-[max(1rem,env(safe-area-inset-left,0px))] py-8 pr-[max(1rem,env(safe-area-inset-right,0px))] pb-[max(2rem,env(safe-area-inset-bottom,0px))] text-center text-[13px] leading-relaxed text-[#1a3040] max-[380px]:text-xs sm:px-6 sm:py-12 sm:text-sm md:px-10">
         <p className="max-w-prose mx-auto">
           &copy; {new Date().getFullYear()} {siteConfig.name}. German-engineered UPVC profiles &amp; window supply — Pokhara, Nepal.
         </p>

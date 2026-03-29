@@ -16,14 +16,13 @@ export const siteConfig = {
   name: "Avisan",
   legalName: "Avisan",
   /**
-   * Served from `public/avisanlogo.png` (path is fixed — do not point elsewhere).
-   * Intrinsic size of the current asset (used by next/image to avoid skew).
+   * On-page brand mark — `public/avs.png` (1536×1024, RGBA). Use a transparent export; no CSS blend hacks.
    */
-  logoPath: "/avisanlogo.png",
-  logoWidth: 461,
-  logoHeight: 311,
-  /** Bump this when you replace `public/avisanlogo.png` so caches fetch the new file. */
-  logoCacheKey: "2",
+  logoPath: "/avs.png",
+  logoWidth: 1536,
+  logoHeight: 1024,
+  /** Bump when replacing the logo file so favicon / OG / JSON-LD caches refresh. */
+  logoCacheKey: "8",
   tagline: "German-engineered profiles. Full window supply.",
   titleTemplate: "%s | Avisan",
   /** Primary meta description (≈155 chars for SERP) */
@@ -48,6 +47,10 @@ export const siteConfig = {
     { display: "9856083935", href: "tel:+9779856083935" },
   ],
   contactAddress: "BP Marga, Chauthe, Pokhara-14",
+  /** Contact card — full lockup with tagline (`public/avisanlogo.png`). */
+  contactLogoPath: "/avisanlogo.png",
+  contactLogoWidth: 461,
+  contactLogoHeight: 311,
   sameAs: [] as string[],
   keywords: [
     "UPVC profiles Nepal",
@@ -65,4 +68,9 @@ export const siteConfig = {
 /** Logo URL with cache-bust query (Next `/public` file + browser/CDN caches). */
 export function getLogoImageSrc(): string {
   return `${siteConfig.logoPath}?v=${siteConfig.logoCacheKey}`
+}
+
+/** Contact block logo (may differ from header mark). */
+export function getContactLogoSrc(): string {
+  return `${siteConfig.contactLogoPath}?v=${siteConfig.logoCacheKey}`
 }

@@ -66,6 +66,7 @@ export function HomePage() {
           <div className="shrink-0 w-[min(100%,8.5rem)] sm:w-[min(100%,180px)] md:w-[200px]">
             {/* eslint-disable-next-line @next/next/no-img-element -- full-res PNG with alpha; next/image can flatten transparency */}
             <img
+              key={`header-logo-${siteConfig.logoCacheKey}`}
               src={getLogoImageSrc()}
               alt={`${siteConfig.name} — UPVC profiles, fabrication materials & window hardware`}
               width={siteConfig.logoWidth}
@@ -253,6 +254,7 @@ export function HomePage() {
             <div className="flex w-full shrink-0 justify-center sm:w-auto sm:justify-start">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
+                key={`contact-logo-${siteConfig.logoCacheKey}`}
                 src={getContactLogoSrc()}
                 alt={`${siteConfig.name} — Window & Door Profiles`}
                 width={siteConfig.contactLogoWidth}
